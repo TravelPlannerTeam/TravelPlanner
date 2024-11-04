@@ -20,3 +20,17 @@
   color: var(--dark-text-color);
 }
 
+.transparent-action-icon {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.transparent-action-icon:hover {
+  background-color: var(--bg-color) !important;
+  border: 0 solid transparent;
+}
+
+.transparent-action-icon .delete {
+  color: var(--dark-text-color); 
+  background-color: transparent !important;
+}

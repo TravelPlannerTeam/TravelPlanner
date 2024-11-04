@@ -90,7 +90,7 @@ function App() {
       <Navbar openForm={openForm} callBackToFilterPlans={filterPlans} query={query}/>
 
       <Routes>
-        <Route path="/" element={<HomePage plans={filteredPlans}/>} />
+        <Route path="/" element={<HomePage plans={filteredPlans} deletePlan={deletePlan}/>} />
         <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
 

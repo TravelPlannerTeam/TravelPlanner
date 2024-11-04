@@ -1,4 +1,4 @@
-import { IconHeart } from "@tabler/icons-react";
+import { IconTrash } from "@tabler/icons-react";
 import {
   Card,
   Image,
@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import "./plancard.css";
 
-const PlanCard = ({ plan }) => {
+const PlanCard = ({ plan, callBackToDeletePlan }) => {
   return (
     <Card withBorder radius="lg" p="md" className="card">
       <Card.Section>
@@ -35,9 +35,11 @@ const PlanCard = ({ plan }) => {
         <Button radius="md" style={{ flex: 1 }}>
           Show details
         </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart className="like" stroke={1.5} />
+
+        <ActionIcon onClick={() => callBackToDeletePlan(plan.id)} className="transparent-action-icon" radius="md" size={36}>
+          <IconTrash className="delete" stroke={1} />
         </ActionIcon>
+
       </Group>
     </Card>
   );
