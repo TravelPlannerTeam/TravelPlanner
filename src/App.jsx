@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 
 import { API_URL as API } from "./assets/API_URL"; //importing API base url from js file in assets
@@ -10,7 +10,8 @@ import PlanDetailsPage from "./pages/PlanDetailsPage";
 import CreatePlanForm from "./components/CreatePlanForm";
 
 function App() {
-  const [plans, setPlans] = useState(null); //Store plans in state
+  const [plans, setPlans] = useState([]); //Store plans in state
+  const [query, setQuery] = useState(""); // for the searchbar
   const [isFormOpen, setIsFormOpen] = useState(false); // per default not visible
 
   // Open form to create a plan
@@ -74,12 +75,22 @@ function App() {
       .catch((e) => console.log("Error deleting the plan from Firebase", e));
   };
 
+  const filterPlans = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const filteredPlans = useMemo(() => {
+    return plans.filter((plan) =>
+      plan.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [plans, query]);
+
   return (
     <>
-      <Navbar openForm={openForm}/>
+      <Navbar openForm={openForm} callBackToFilterPlans={filterPlans} query={query}/>
 
       <Routes>
-        <Route path="/" element={<HomePage plans={plans}/>} />
+        <Route path="/" element={<HomePage plans={filteredPlans}/>} />
         <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
 
