@@ -1,10 +1,7 @@
 .homepage {
-    margin: 10em 0em;
+    margin: 10em auto;
     padding: 1em 2em;
-    right: 1em;
-    left: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    max-width: 90%;
+    box-sizing: border-box;
 }

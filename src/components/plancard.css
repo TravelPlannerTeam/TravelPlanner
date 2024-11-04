@@ -1,8 +1,9 @@
 .card {
   background-color: var(--bg-color);
   margin: 1em;
-  width: 30%;
+  width: calc(33.33% - 2em);
   min-width: 300px;
+  box-sizing: border-box;
 }
 
 .section {

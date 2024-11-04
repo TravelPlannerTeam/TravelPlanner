@@ -58,8 +58,9 @@ button:hover,
 
 .plans-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-shrink: 1;
+  flex-grow: 1;
   flex-wrap: wrap;
-  width: 80%
+  max-width: 100%;
 }
