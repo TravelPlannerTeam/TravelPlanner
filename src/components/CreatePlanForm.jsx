@@ -126,7 +126,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 required
-                min={today}
+                min={startDate || today} // Ensures end date is after start date
               />
             </label>
           </div>

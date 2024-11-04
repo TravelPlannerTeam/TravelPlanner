@@ -47,6 +47,7 @@ function App() {
         console.log(response);
         //calling getplans to update the list from database
         getPlans();
+        closeForm()
       })
       .catch((e) => console.log("Error adding the plan to Firebase", e));
   };
