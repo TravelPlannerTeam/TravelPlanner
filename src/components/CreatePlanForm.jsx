@@ -28,7 +28,13 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
             headers: { Authorization: `Client-ID ${token}` },
           }
         );
-        return response.data.results[0].urls.regular;
+
+        // Find the image with the most likes
+        const mostLikedImage = response.data.results.reduce((prev, current) => {
+          return current.likes > prev.likes ? current : prev;
+        });
+        return mostLikedImage.urls.regular;
+        
       } catch (error) {
         console.error("Unsplash API error:", error);
         return ""; // Return an empty string if there's an error
