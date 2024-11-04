@@ -1,8 +1,11 @@
 import { useState } from "react";
+import axios from "axios";
 
 import "../components/create-plan-form.css";
 
-const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => { // Destructure props here
+import { UNSPLASH_API_URL } from "../assets/API_URL";
+
+const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [destination, setDestination] = useState("");
@@ -12,10 +15,30 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => { // D
   const today = new Date().toISOString().split("T")[0];
 
   // Handle submit
-  const handleSubmit = (e) => { // Add the event parameter
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
 
+    // Fetch image URL from Unsplash
+    async function fetchUnsplashPhotos() {
+      try {
+        const token = "h9klRUI4KbqMlA4Wb2ssyJ3mVCS_eO2vV-0PeftUolE";
+        const response = await axios.get(
+          `${UNSPLASH_API_URL}?query=${destination}`,
+          {
+            headers: { Authorization: `Client-ID ${token}` },
+          }
+        );
+        return response.data.results[0].urls.regular;
+      } catch (error) {
+        console.error("Unsplash API error:", error);
+        return ""; // Return an empty string if there's an error
+      }
+    }
+
+    const image = await fetchUnsplashPhotos();
+
     const newPlan = {
+      image,
       title,
       description,
       destination,
@@ -23,9 +46,9 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => { // D
       endDate,
     };
 
-    callBacktoCreatePlan(newPlan); // pass new plan to app.jsx
+    callBacktoCreatePlan(newPlan); // Pass new plan to parent
 
-    // clear all input fields
+    // Clear all input fields
     setTitle("");
     setDescription("");
     setDestination("");
@@ -43,35 +66,32 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => { // D
         <div className="inputs">
           <label>
             TITLE
-            <br></br>
             <input
               type="text"
               placeholder="New Year's Eve Celebration"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              maxLength="80" // character limit
+              maxLength="80"
             />
           </label>
 
           <label>
             DESCRIPTION
-            <br />
             <textarea
               className="textarea"
               placeholder="Seeing my Bachelor's friends to celebrate the new year."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              rows="3" // Controls the height of the textarea
-              cols="40" // Controls the width of the textarea
+              rows="3"
+              cols="40"
               maxLength="350"
             />
           </label>
 
           <label>
             DESTINATION
-            <br></br>
             <input
               type="text"
               placeholder="New York"
@@ -84,25 +104,23 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => { // D
           <div className="dates">
             <label>
               START DATE
-              <br></br>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 required
-                min={today} // Set the minimum date to today
+                min={today}
               />
             </label>
 
             <label>
               END DATE
-              <br></br>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 required
-                min={today} // Set the minimum date to today
+                min={today}
               />
             </label>
           </div>
