@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #ff977c;
-  --accent-color: #ff5c3b;
+  --primary-color: #8b8b8b;
+  --accent-color: #5c5656;
   --dark-text-color: #201f1e;
   --light-text-color: #ffffff;
   --bg-color: #ebe9e8;
@@ -8,8 +8,6 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-
 
   /* Set Mantine-specific primary colors */
   --mantine-primary-color: var(--primary-color); /* Custom primary color */
