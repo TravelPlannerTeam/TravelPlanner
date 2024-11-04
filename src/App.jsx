@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 import { API_URL as API } from "./assets/API_URL"; //importing API base url from js file in assets
-import PlanePage from "./pages/PlanPage";
+
+import HomePage from "./pages/HomePage";
+import Navbar from "./components/Navbar";
+import PlanDetailsPage from "./pages/PlanDetailsPage";
 
 function App() {
   const [plans, setPlans] = useState(null); //Store plans in state
@@ -69,8 +71,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/:Plan" element={<PlanePage />} />{" "}
-        {/* use the plans name in the url instead of id? */}
+        <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
     </>
   );
