@@ -1,0 +1,21 @@
+.card {
+  background-color: var(--bg-color);
+  margin: 1em;
+  width: 30%;
+  min-width: 300px;
+}
+
+.section {
+  border-bottom: 1px solid var(--dark-text-color);
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  padding-bottom: var(--mantine-spacing-md);
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 700;
+  color: var(--dark-text-color);
+}
+

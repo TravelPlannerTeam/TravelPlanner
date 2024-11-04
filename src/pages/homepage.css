@@ -1,0 +1,6 @@
+.homepage {
+    margin: 10em 2em;
+    width: 100vw; 
+    display: flex;
+    flex-direction: row;
+}

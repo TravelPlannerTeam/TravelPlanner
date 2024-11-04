@@ -78,7 +78,7 @@ function App() {
       <Navbar openForm={openForm}/>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage plans={plans}/>} />
         <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
 
