@@ -1,6 +1,9 @@
 .homepage {
-    margin: 10em 2em;
-    width: 100vw; 
+    margin: 10em 0em;
+    padding: 1em 2em;
+    right: 1em;
+    left: 1em;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
