@@ -7,9 +7,15 @@ import { API_URL as API } from "./assets/API_URL"; //importing API base url from
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
+import CreatePlanForm from "./components/CreatePlanForm";
 
 function App() {
   const [plans, setPlans] = useState(null); //Store plans in state
+  const [isFormOpen, setIsFormOpen] = useState(false); // per default not visible
+
+  // Open form to create a plan
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
 
   useEffect(() => {
     getPlans();
@@ -33,10 +39,11 @@ function App() {
       .catch((e) => console.log("Error getting plans from Firebase", e));
   };
   //function to add a new plan
-  const addPlan = (newPlan) => {
+  const createPlan = (newPlan) => {
     axios
       .post(`${API}/travelPlans.json`, newPlan)
       .then((response) => {
+        console.log(newPlan);
         console.log(response);
         //calling getplans to update the list from database
         getPlans();
@@ -65,14 +72,23 @@ function App() {
       })
       .catch((e) => console.log("Error deleting the plan from Firebase", e));
   };
+
   return (
     <>
-      <Navbar />
+      <Navbar openForm={openForm}/>
 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
+
+      {isFormOpen && (
+        <div className="form-overlay" onClick={closeForm}>
+          <div className="form-box" onClick={(e) => e.stopPropagation()}>
+            <CreatePlanForm callBacktoCreatePlan={createPlan} callBackToCloseForm={closeForm} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
