@@ -1,3 +1,4 @@
+import { Button } from "@mantine/core";
 import { useState } from "react";
 import axios from "axios";
 
@@ -34,7 +35,6 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
           return current.likes > prev.likes ? current : prev;
         });
         return mostLikedImage.urls.regular;
-        
       } catch (error) {
         console.error("Unsplash API error:", error);
         return ""; // Return an empty string if there's an error
@@ -64,11 +64,19 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
 
   return (
     <>
-      <button onClick={callBackToCloseForm} className="close-button">
-        X
-      </button>
       <form onSubmit={handleSubmit} className="form">
-        <h2>Create a new travel plan 🌍</h2>
+        <div className="top">
+        <h2>Create a new travel plan</h2>
+        <Button
+          onClick={callBackToCloseForm}
+          variant="subtle"
+          color="grey"
+          size="lg"
+          radius="lg"
+        >
+          X
+        </Button>
+        </div>
         <div className="inputs">
           <label>
             TITLE
@@ -131,9 +139,16 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
             </label>
           </div>
         </div>
-        <button className="submit" type="submit">
-          Create plan
-        </button>
+        <Button
+          type="submit"
+          variant="filled"
+          color="yellow"
+          size="lg"
+          radius="md"
+        >
+          Create new plan
+        </Button>
+        ;
       </form>
     </>
   );

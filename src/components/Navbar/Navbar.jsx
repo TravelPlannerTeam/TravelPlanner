@@ -1,3 +1,5 @@
+import { Button } from '@mantine/core';
+
 import "./navbar.css";
 import logo from "../../assets/logo.png";
 
@@ -18,7 +20,7 @@ const Navbar = ({ openForm, callBackToFilterPlans, query }) => {
           />
         </div>
         <div>
-          <button onClick={openForm}>Create new plan</button>
+        <Button onClick={openForm} variant="filled" color="yellow" size="lg" radius="md">Create new plan</Button>;
         </div>
       </div>
     </nav>

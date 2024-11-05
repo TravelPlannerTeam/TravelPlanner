@@ -35,23 +35,3 @@ body {
   background-color: var(--bg-color) !important;
   font-family: var(--font-family); /* Apply font family */
 }
-
-/* Combined button and Mantine primary color overrides */
-button,
-[data-mantine-color="primary"] {
-  border-radius: 0.7em;
-  padding: 0.8em 1.5em;
-  font-size: 1em;
-  cursor: pointer;
-  outline: none;
-  border: 0.1em solid transparent;
-  background-color: var(--primary-color);
-  color: var(--dark-text-color);
-  font-weight: 400;
-}
-
-button:hover,
-[data-mantine-color="primary"]:hover {
-  background-color: var(--mantine-primary-color-hover) !important;
-  border-color: var(--mantine-primary-color-hover) !important;
-}
