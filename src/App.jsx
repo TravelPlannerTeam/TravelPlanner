@@ -1,18 +1,33 @@
-import { Route, Routes } from "react-router-dom";
-import { useEffect, useState, useMemo } from "react";
+import React from "react";
+import { useState, useEffect, useMemo } from "react";
+import { AuthProvider } from "./contexts/AuthContext";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { API_URL as API } from "./assets/API_URL"; //importing API base url from js file in assets
-
+import { useAuth } from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
-import CreatePlanForm from "./components/CreatePlan/CreatePlanForm"
+import CreatePlanForm from "./components/CreatePlan/CreatePlanForm";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import UpdateProfile from "./pages/UpdateProfile";
 
 function App() {
   const [plans, setPlans] = useState([]); //Store plans in state
   const [query, setQuery] = useState(""); // for the searchbar
   const [isFormOpen, setIsFormOpen] = useState(false); // per default not visible
+
+  const { currentUser } = useAuth();
 
   // Open form to create a plan
   const openForm = () => setIsFormOpen(true);
@@ -48,7 +63,7 @@ function App() {
         console.log(response);
         //calling getplans to update the list from database
         getPlans();
-        closeForm()
+        closeForm();
       })
       .catch((e) => console.log("Error adding the plan to Firebase", e));
   };
@@ -87,17 +102,44 @@ function App() {
 
   return (
     <>
-      <Navbar openForm={openForm} callBackToFilterPlans={filterPlans} query={query}/>
+      {currentUser && (
+        <Navbar
+          openForm={openForm}
+          callBackToFilterPlans={filterPlans}
+          query={query}
+        />
+      )}
 
-      <Routes>
-        <Route path="/" element={<HomePage plans={filteredPlans} deletePlan={deletePlan}/>} />
-        <Route path="/:id" element={<PlanDetailsPage />} />{" "}
-      </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/updateprofile" element={<UpdateProfile />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/:id"
+            element={
+              <PrivateRoute>
+                <PlanDetailsPage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
 
       {isFormOpen && (
         <div className="form-overlay" onClick={closeForm}>
           <div className="form-box" onClick={(e) => e.stopPropagation()}>
-            <CreatePlanForm callBacktoCreatePlan={createPlan} callBackToCloseForm={closeForm} />
+            <CreatePlanForm
+              callBacktoCreatePlan={createPlan}
+              callBackToCloseForm={closeForm}
+            />
           </div>
         </div>
       )}
