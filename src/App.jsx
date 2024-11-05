@@ -34,39 +34,48 @@ function App() {
   const closeForm = () => setIsFormOpen(false);
 
   useEffect(() => {
-    getPlans();
-  }, []);
+    if (currentUser) {
+      getPlans();
+    }
+  }, [currentUser]);
 
-  //function to get plans
+  // function to get plans
   const getPlans = () => {
     axios
       .get(`${API}/travelPlans.json`)
       .then((response) => {
         console.log(response);
-        const array = Object.keys(response.data).map((id) => ({
-          //convert the response from objects to an array
-          id,
-          ...response.data[id],
-        }));
+        const array = Object.keys(response.data)
+          .map((id) => ({
+            // convert the response from objects to an array
+            id,
+            ...response.data[id],
+          }))
+          .filter((plan) => plan.userId === currentUser?.uid); // Filter by current user's uid
+          
         const newarr = array.toReversed();
-        //save list in state
+        console.log(newarr);
+        // save list in state
         setPlans(newarr);
       })
       .catch((e) => console.log("Error getting plans from Firebase", e));
   };
-  //function to add a new plan
+
+  // function to add a new plan
   const createPlan = (newPlan) => {
+    const planWithUser = { ...newPlan, userId: currentUser?.uid }; // Add userId to the plan
     axios
-      .post(`${API}/travelPlans.json`, newPlan)
+      .post(`${API}/travelPlans.json`, planWithUser)
       .then((response) => {
-        console.log(newPlan);
+        console.log(planWithUser);
+        console.log("This is the currentUser?.uid:" + currentUser?.uid)
         console.log(response);
-        //calling getplans to update the list from database
-        getPlans();
+        getPlans(); // Update the list of plans
         closeForm();
       })
       .catch((e) => console.log("Error adding the plan to Firebase", e));
   };
+
   //function to edit an existing plan
   const editPlan = (planId) => {
     axios
@@ -110,28 +119,28 @@ function App() {
         />
       )}
 
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/updateprofile" element={<UpdateProfile />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/:id"
-            element={
-              <PrivateRoute>
-                <PlanDetailsPage />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/updateprofile" element={<UpdateProfile />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HomePage plans={plans} deletePlan={deletePlan}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/:id"
+          element={
+            <PrivateRoute>
+              <PlanDetailsPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
 
       {isFormOpen && (
         <div className="form-overlay" onClick={closeForm}>
