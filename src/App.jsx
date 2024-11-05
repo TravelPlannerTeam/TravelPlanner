@@ -17,10 +17,10 @@ import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
 import CreatePlanForm from "./components/CreatePlan/CreatePlanForm";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
-import UpdateProfile from "./pages/UpdateProfile";
+import Login from "./components/AuthenticationForms/Login";
+import Signup from "./components/AuthenticationForms/Signup";
+import ForgotPassword from "./components/AuthenticationForms/ForgotPassword";
+import UpdateProfile from "./components/AuthenticationForms/UpdateProfile";
 
 function App() {
   const [plans, setPlans] = useState([]); //Store plans in state
