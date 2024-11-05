@@ -1,0 +1,63 @@
+/* Form container */
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../../assets/bg4.jpg);
+    background-size: cover;        
+    background-position: center;  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.logo {
+    height: 4em;
+    width: auto;
+}
+
+.form-card {
+    background-color: white;
+    border: 0.1 solid transparent;
+    border-radius: 1em;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    width: 100%;
+    max-width: 400px;
+    font-family: var(--font-family);
+  }
+  
+  /* Form heading */
+  .form-card h2 {
+    color: var(--dark-text-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+
+  /* Custom link styling */
+.form-link {
+    color: var(--primary-color); /* Your custom color */
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .form-link:hover,
+  .form-link:focus {
+    text-decoration: underline;
+  }
+
+.field {
+    margin-bottom: 1em;
+}
+  
+.field:focus,
+.field:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 0.1em solid var(--primary-color);
+}
