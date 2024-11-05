@@ -7,7 +7,7 @@ import { API_URL as API } from "./assets/API_URL"; //importing API base url from
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
-import CreatePlanForm from "./components/CreatePlanForm";
+import CreatePlanForm from "./components/CreatePlan/CreatePlanForm"
 
 function App() {
   const [plans, setPlans] = useState([]); //Store plans in state

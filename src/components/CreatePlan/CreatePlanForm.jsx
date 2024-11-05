@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
-import "../components/create-plan-form.css";
+import "./create-plan-form.css";
 
-import { UNSPLASH_API_URL } from "../assets/API_URL";
+import { UNSPLASH_API_URL } from "../../assets/API_URL";
 
 const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
   const [title, setTitle] = useState("");

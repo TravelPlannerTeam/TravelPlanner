@@ -1,5 +1,5 @@
-import "../components/navbar.css";
-import logo from "../assets/logo.png";
+import "./navbar.css";
+import logo from "../../assets/logo.png";
 
 const Navbar = ({ openForm, callBackToFilterPlans, query }) => {
   return (
