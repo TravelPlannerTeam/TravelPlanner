@@ -4,4 +4,5 @@
     overflow: hidden;
     max-width: 90%;
     box-sizing: border-box;
+    align-items: center;
 }

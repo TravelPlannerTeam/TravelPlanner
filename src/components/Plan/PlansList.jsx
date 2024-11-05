@@ -1,7 +1,9 @@
-import PlanCard from "../components/PlanCard";
+import { Loader } from '@mantine/core';
+import PlanCard from "./PlanCard";
+import "./planslist.css";
 
 const PlansList = ({ plans, deletePlan }) => {
-  if (!plans) return <div>Loading...</div>; // Display a loading message if plans are not yet loaded
+  if (!plans) return <Loader color="yellow" size="xl" type="dots" />;
 
   return (
     <div className="plans-list">

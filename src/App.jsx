@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_URL as API } from "./assets/API_URL"; //importing API base url from js file in assets
 
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
 import CreatePlanForm from "./components/CreatePlanForm";
 

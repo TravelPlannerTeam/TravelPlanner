@@ -55,12 +55,3 @@ button:hover,
   background-color: var(--mantine-primary-color-hover) !important;
   border-color: var(--mantine-primary-color-hover) !important;
 }
-
-.plans-list {
-  display: flex;
-  justify-content: flex-start;
-  flex-shrink: 1;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  max-width: 100%;
-}

@@ -1,5 +1,5 @@
 import "../pages/homepage.css";
-import PlansList from "../components/PlansList";
+import PlansList from "../components/Plan/PlansList";
 
 const HomePage = ({ plans, deletePlan }) => {
   return (
