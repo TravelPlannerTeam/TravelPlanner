@@ -35,7 +35,7 @@ export default function Login() {
       <img className="logo" src={logo} alt="travelplanner logo" />
       <Card className="form-card">
         <Card.Body>
-          <h2 className="text-center mb-4">Login to TravelPlanner</h2>
+          <h2 className="text-center mb-4">Welcome back 👋</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
