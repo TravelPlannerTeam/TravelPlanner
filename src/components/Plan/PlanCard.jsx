@@ -9,9 +9,9 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import "./plancard.css";
+import { Link } from "react-router-dom";
 
 const PlanCard = ({ plan, callBackToDeletePlan }) => {
-  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const month = date.toLocaleString("en-US", { month: "short" });
@@ -43,10 +43,11 @@ const PlanCard = ({ plan, callBackToDeletePlan }) => {
       </Card.Section>
 
       <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }} color="grey">
-          Show details
-        </Button>
-
+        <Link to={`/${plan.id}`}>
+          <Button radius="md" style={{ flex: 1 }} color="grey">
+            Show details
+          </Button>
+        </Link>
         <ActionIcon
           onClick={() => callBackToDeletePlan(plan.id)}
           className="transparent-action-icon"
