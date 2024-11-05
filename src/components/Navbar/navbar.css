@@ -15,6 +15,13 @@
   z-index: 1;
 }
 
+.title {
+  font-size: 2em;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+
 .logo {
   margin: 1em;
   height: 3em;
@@ -29,13 +36,13 @@
 
 .nav-right {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-right: 1em;
+  gap: 1em;
 }
 
 #navbar-search {
   display: flex;
-  margin-right: 1em;
 }
 
 #navbar-search input {
