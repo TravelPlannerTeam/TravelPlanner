@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #8b8b8b;
+  --primary-color: #fab005;
   --accent-color: #5c5656;
   --dark-text-color: #201f1e;
   --light-text-color: #ffffff;
@@ -45,8 +45,8 @@ button,
   cursor: pointer;
   outline: none;
   border: 0.1em solid transparent;
-  background-color: var(--mantine-primary-color) !important;
-  color: var(--light-text-color) !important;
+  background-color: var(--primary-color);
+  color: var(--dark-text-color);
   font-weight: 400;
 }
 
