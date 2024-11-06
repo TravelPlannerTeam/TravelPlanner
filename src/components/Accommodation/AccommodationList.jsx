@@ -1,4 +1,4 @@
-import { Card, Text, Badge, Button, Group, ActionIcon } from "@mantine/core";
+import { Card, Text, Badge, Group, ActionIcon } from "@mantine/core";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 import UpdateAccommodation from "./UpdateAccommodation";
 import { useState } from "react";

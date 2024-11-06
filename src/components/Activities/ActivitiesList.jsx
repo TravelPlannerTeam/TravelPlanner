@@ -1,6 +1,9 @@
-import { Card, Text, Button, Group } from "@mantine/core";
+import { Card, Text, Group, ActionIcon } from "@mantine/core";
+import { IconEdit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import Updateactivity from "./UpdateActivity";
+
+import "./activities.css";
 
 export default function ActivitiesList({
   activitiesList,
@@ -19,59 +22,61 @@ export default function ActivitiesList({
     return `${day} ${month}`;
   };
 
-
   if (activitiesList === null) return <h3>Loading...</h3>;
 
   return (
-    <div className="detailsList">
+    <div className="detailsList" style={{ width: '100%' }}>
       {activitiesList.map((activity) => {
         return (
           <Card
-            shadow="sm"
-            padding="lg"
-            radius="sm"
             withBorder
+            radius="lg"
+            p="md"
+            className="activity-card"
             key={activity.id}
           >
             <Group justify="space-between" mt="md" mb="xs">
-              <Text fw={500}>{activity.name}</Text>
+              <Text fw={700}>{activity.name}</Text>
             </Group>
 
             <Text size="sm">{activity.type}</Text>
-            <Text>Start Date: {formatDate(activity.start)}</Text>
-            <Text>End Date: {formatDate(activity.end)}</Text>
-            <Group>
-              <Button
-                color="blue"
-                mt="sm"
-                radius="sm"
-                onClick={() => openUpdateForm(activity.id)}
-              >
-                Edit
-              </Button>
-              {editingId === activity.id && (
-                <div className="form-overlay" onClick={closeUpdateForm}>
-                  <div
-                    className="form-box"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Updateactivity
-                      callBackToCloseForm={closeUpdateForm}
-                      activity={activity}
-                      callBackToUpdate={callBackToUpdate}
-                    />
-                  </div>
-                </div>
-              )}
-              <Button
-                color="red"
-                mt="sm"
-                radius="sm"
-                onClick={() => callBackToDelete(activity.id)}
-              >
-                Delete
-              </Button>
+
+            <Group justify="space-between" mt="md" mb="xs">
+
+              <Text size="sm" mt="s" color="grey">
+                {formatDate(activity.start)} until {formatDate(activity.end)}
+              </Text>
+              <Group justify="flex-end">
+                <ActionIcon
+                  onClick={() => openUpdateForm(activity.id)}
+                  color="yellow"
+                  radius="md"
+                  size={36}
+                >
+                  <IconEdit className="edit" stroke={1} />
+                </ActionIcon>
+                <ActionIcon
+                  onClick={() => callBackToDelete(activity.id)}
+                  color="orange"
+                  radius="md"
+                  size={36}
+                >
+                  <IconTrash className="delete" stroke={1} />
+                </ActionIcon>
+              </Group>
             </Group>
+
+            {editingId === activity.id && (
+              <div className="form-overlay" onClick={closeUpdateForm}>
+                <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                  <Updateactivity
+                    callBackToCloseForm={closeUpdateForm}
+                    activity={activity}
+                    callBackToUpdate={callBackToUpdate}
+                  />
+                </div>
+              </div>
+            )}
           </Card>
         );
       })}
