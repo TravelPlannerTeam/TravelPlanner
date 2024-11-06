@@ -14,7 +14,6 @@ import { API_URL as API } from "./assets/API_URL"; //importing API base url from
 import { useAuth } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
 import CreatePlanForm from "./components/CreatePlan/CreatePlanForm";
 import Login from "./components/AuthenticationForms/Login";
@@ -111,14 +110,6 @@ function App() {
 
   return (
     <>
-      {currentUser && (
-        <Navbar
-          openForm={openForm}
-          callBackToFilterPlans={filterPlans}
-          query={query}
-        />
-      )}
-
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -128,8 +119,14 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage plans={filteredPlans} deletePlan={deletePlan} />
-            </PrivateRoute>
+            <HomePage
+              plans={filteredPlans}
+              deletePlan={deletePlan}
+              openForm={openForm}                 // used in Navbar
+              callBackToFilterPlans={filterPlans} // used in Navbar
+              query={query}                       // used in Navbar
+            />
+          </PrivateRoute>
           }
         />
         <Route

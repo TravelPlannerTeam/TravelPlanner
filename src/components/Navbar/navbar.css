@@ -23,7 +23,7 @@
 
 
 #navbar .logo {
-  margin: 0.7em;
+  margin: 1em;
   max-height: 2.5em;
   width: auto;
 }
@@ -37,7 +37,8 @@
 .nav-right {
   display: flex;
   justify-content: space-between;
-  gap: 1em;
+  align-items: center;
+  gap: 0.5em;
 }
 
 #navbar-search {
@@ -65,4 +66,69 @@
   transform: translateY(-50%);
   color: var(--text-color);
   font-size: 1.2em;
+}
+
+.burger {
+  display: none;
+}
+
+/***** RESPONSIVE DESIGN *******/ 
+
+/* Extra Small - Mobile Portrait */
+@media (max-width: 767px) {
+
+  #navbar {
+    margin: 0.5em auto;
+    height: 4em;
+  }
+
+  .title, .navbar-button, .logo {
+    display: none
+  }
+
+  #navbar-search {
+    flex-grow: 1;
+    width: 100%;
+    padding-right: 1em;
+  }
+
+  .nav-right, #navbar-search input {
+    width: fit-content;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .burger-dropdown {
+    border-radius: none;
+    margin: 0.4em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    z-index: 10;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .title, .navbar-button {
+    display: none
+  }
+  .burger {
+    display: block;
+  }
+  #navbar-search {
+    flex-grow: 1;
+  }
+  .nav-right, #navbar-search input {
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+/* Medium - Tablet Portrait */
+@media (min-width: 768px) and (max-width: 991px) {
+  .title {
+    display: none
+  }
 }
