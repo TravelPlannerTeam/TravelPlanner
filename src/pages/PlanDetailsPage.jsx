@@ -8,30 +8,44 @@ import { useState, useEffect } from "react";
 import CreateAccommodation from "../components/Accommodation/CreateAccommodation";
 import axios from "axios";
 import { API_URL } from "../assets/API_URL";
+import CreateActivity from "../components/Activities/CreateActivity";
 
 export default function PlanDetailsPage() {
   const { id } = useParams();
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+  const [isAddActivityOpen, setIsAddActivityOpen] = useState(false);
 
   const openAccommodationForm = () => setIsAddItemOpen(true);
   const closeAccommodationForm = () => setIsAddItemOpen(false);
+
+  const openActivitiesForm = () => setIsAddActivityOpen(true);
+  const closeActivitesForm = () => setIsAddActivityOpen(false);
+
   const [accomodationList, setAccomodationList] = useState([]);
+  const [activitiesList, setActivitiesList] = useState([]);
+
   useEffect(() => {
     getAccommodation();
+    getActivities();
   }, []);
+
   const getAccommodation = () => {
     axios
       .get(`${API_URL}/travelPlans/${id}/accommodation.json`)
       .then((response) => {
-        const array = Object.keys(response.data).map((id) => ({
-          //convert the response from objects to an array
-          id,
-          ...response.data[id],
-        }));
-        const newarr = array.toReversed();
-        //save list in state
+        if (response.data) {
+          const array = Object.keys(response.data).map((id) => ({
+            //convert the response from objects to an array
+            id,
+            ...response.data[id],
+          }));
+          const newarr = array.toReversed();
+          //save list in state
 
-        setAccomodationList(newarr);
+          setAccomodationList(newarr);
+        } else {
+          setAccomodationList([{ name: "No Accommodations" }]);
+        }
       })
       .catch((e) =>
         console.log("Error fetching accomodationList from Firebase", e)
@@ -48,7 +62,7 @@ export default function PlanDetailsPage() {
   const updateAccommodation = (updatedAccommodation) => {
     axios
       .put(
-        `${API_URL}travelPlans/${id}/accommodation/${updatedAccommodation}.json`,
+        `${API_URL}travelPlans/${id}/accommodation/${updatedAccommodation.id}.json`,
         updatedAccommodation
       )
       .then((response) => {
@@ -65,7 +79,55 @@ export default function PlanDetailsPage() {
       .then(() => {
         getAccommodation();
         console.log("deleted");
-      });
+      })
+      .catch((e) => console.log("Couldnt Delete", e));
+  };
+
+  const getActivities = () => {
+    axios
+      .get(`${API_URL}/travelPlans/${id}/activities.json`)
+      .then((response) => {
+        const array = Object.keys(response.data).map((id) => ({
+          //convert the response from objects to an array
+          id,
+          ...response.data[id],
+        }));
+        const newarr = array.toReversed();
+        //save list in state
+
+        setActivitiesList(newarr);
+      })
+      .catch((e) =>
+        console.log("Error fetching Activity List from Firebase", e)
+      );
+  };
+  const addActivity = (newActivity) => {
+    axios
+      .post(`${API_URL}travelPlans/${id}/activities.json`, newActivity)
+      .then((response) => {
+        getActivities();
+      })
+      .catch((e) => console.log("couldnt add activity", e));
+  };
+  const deleteActivity = (activityId) => {
+    axios
+      .delete(`${API_URL}travelPlans/${id}/activities/${activityId}.json`)
+      .then((response) => {
+        getActivities();
+      })
+      .catch((e) => console.log("Couldnt Delete activity", e));
+  };
+  const updateActivity = (updateActivity) => {
+    axios
+      .put(
+        `${API_URL}travelPlans/${id}/activities/${updateActivity.id}.json`, ///might be issue
+        updateActivity
+      )
+      .then((response) => {
+        getActivities();
+        console.log("updated activity");
+      })
+      .catch((e) => console.log("couldnt update activity", e));
   };
   return (
     <div className="planDetailsPage homepage">
@@ -95,14 +157,35 @@ export default function PlanDetailsPage() {
           callBackToDelete={deleteAccomodation}
           accomodationList={accomodationList}
           callBackToUpdate={updateAccommodation}
-          planId={id}
         />
       </Card>
 
       <Card>
         <h3>Activites</h3>
-
-        <ActivitiesList planId={id} />
+        <Button
+          onClick={openActivitiesForm}
+          variant="filled"
+          color="yellow"
+          size="sm"
+          radius="md"
+        >
+          Add Activity
+        </Button>
+        {isAddActivityOpen && (
+          <div className="form-overlay" onClick={closeActivitesForm}>
+            <div className="form-box" onClick={(e) => e.stopPropagation()}>
+              <CreateActivity
+                callBackToCloseForm={closeActivitesForm}
+                callBackToAddActivity={addActivity}
+              />
+            </div>
+          </div>
+        )}
+        <ActivitiesList
+          callBackToDelete={deleteActivity}
+          activitiesList={activitiesList}
+          callBackToUpdate={updateActivity}
+        />
       </Card>
       <Card>
         <h3>Packing</h3>
