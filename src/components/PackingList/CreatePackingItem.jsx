@@ -1,30 +1,25 @@
-import { Button } from "@mantine/core";
+import { Box, Button } from "@mantine/core";
 import { useState } from "react";
 
-export default function CreateActivity({
+export default function CreatePackingItem({
   callBackToCloseForm,
-  callBackToAddActivity,
+  callBackToAddToPackingItem,
 }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
   const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newActivity = {
-      start: start,
-      end: end,
+    const newItem = {
       name: name,
       type: type,
     };
-    callBackToAddActivity(newActivity);
+    callBackToAddToPackingItem(newItem);
     setName("");
     setType("");
-    setStart("");
-    setEnd("");
+
     callBackToCloseForm();
   };
 
@@ -32,7 +27,7 @@ export default function CreateActivity({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Add a new Activity</h2>
+          <h2>Add a new Item</h2>
           <Button
             onClick={callBackToCloseForm}
             variant="subtle"
@@ -48,7 +43,7 @@ export default function CreateActivity({
             Name
             <input
               type="text"
-              placeholder="Hiking trip"
+              placeholder="hiking shoes"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -57,40 +52,17 @@ export default function CreateActivity({
           </label>
 
           <label>
-            Description
-            <input
-              type="text"
-              placeholder="Hiking in the Black Forest"
+            Type
+            <textarea
+              className="textarea"
+              placeholder="day 3 mountine hike"
               value={type}
               onChange={(e) => setType(e.target.value)}
-              required
+              rows="3"
+              cols="40"
               maxLength="80"
             />
           </label>
-
-          <div className="dates">
-            <label>
-              Start
-              <input
-                type="date"
-                value={start}
-                onChange={(e) => setStart(e.target.value)}
-                required
-                min={today}
-              />
-            </label>
-
-            <label>
-              End
-              <input
-                type="date"
-                value={end}
-                onChange={(e) => setEnd(e.target.value)}
-                required
-                min={start || today} // Ensures end date is after start date
-              />
-            </label>
-          </div>
         </div>
         <Button
           type="submit"
@@ -99,8 +71,9 @@ export default function CreateActivity({
           size="lg"
           radius="md"
         >
-          Add Activity
+          Add Item
         </Button>
+        ;
       </form>
     </>
   );

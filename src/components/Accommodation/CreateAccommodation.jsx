@@ -58,14 +58,21 @@ export default function CreateAccommodation({
 
           <label>
             Type
-            <input
-              type="text"
-              placeholder="Hotel"
+            <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               required
-              maxLength="80"
-            />
+            >
+              <option value="" disabled>
+                Pick Value
+              </option>
+              <option value="Hotel">Hotel</option>
+              <option value="Hostel">Hostel</option>
+              <option value="Rental">Rental</option>
+              <option value="Motel">Motel</option>
+              <option value="Bed and Breakfast">Bed and Breakfast</option>
+              <option value="Resort">Resort</option>
+            </select>
           </label>
 
           <div className="dates">
