@@ -7,7 +7,7 @@ import { API_URL as API } from "./assets/API_URL"; //importing API base url from
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
-import CreatePlanForm from "./components/CreatePlan/CreatePlanForm"
+import CreatePlanForm from "./components/CreatePlan/CreatePlanForm";
 
 function App() {
   const [plans, setPlans] = useState([]); //Store plans in state
@@ -48,7 +48,7 @@ function App() {
         console.log(response);
         //calling getplans to update the list from database
         getPlans();
-        closeForm()
+        closeForm();
       })
       .catch((e) => console.log("Error adding the plan to Firebase", e));
   };
@@ -87,17 +87,27 @@ function App() {
 
   return (
     <>
-      <Navbar openForm={openForm} callBackToFilterPlans={filterPlans} query={query}/>
+      <Navbar
+        openForm={openForm}
+        callBackToFilterPlans={filterPlans}
+        query={query}
+      />
 
       <Routes>
-        <Route path="/" element={<HomePage plans={filteredPlans} deletePlan={deletePlan}/>} />
+        <Route
+          path="/"
+          element={<HomePage plans={filteredPlans} deletePlan={deletePlan} />}
+        />
         <Route path="/:id" element={<PlanDetailsPage />} />{" "}
       </Routes>
 
       {isFormOpen && (
         <div className="form-overlay" onClick={closeForm}>
           <div className="form-box" onClick={(e) => e.stopPropagation()}>
-            <CreatePlanForm callBacktoCreatePlan={createPlan} callBackToCloseForm={closeForm} />
+            <CreatePlanForm
+              callBacktoCreatePlan={createPlan}
+              callBackToCloseForm={closeForm}
+            />
           </div>
         </div>
       )}

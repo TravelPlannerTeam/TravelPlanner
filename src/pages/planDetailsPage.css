@@ -1,0 +1,8 @@
+.planDetailsPage{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.detailsList{
+    margin: 0 1em;
+}
