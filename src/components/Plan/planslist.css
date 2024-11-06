@@ -1,4 +1,4 @@
-.plans-list {
+.plans-list, .noPlans {
     position: relative;
     margin-top: 10em; 
     display: flex;
@@ -9,7 +9,19 @@
     max-width: 100%
   }
 
-
+  .noPlans{
+    justify-content: center;
+  }
+  .noPlans button{
+    border-style: none;
+    background-color:#fab005;
+    border-radius: 0.2em;
+    padding: 0 20px;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    color:#fff
+  }
   /***** RESPONSIVE DESIGN *******/ 
 
 /* Extra Small - Mobile Portrait */
@@ -19,6 +31,10 @@
     display: flex;
     justify-content: center;
   }
+  .noPlans button{
+    margin-top: 1em;
+  
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -26,6 +42,8 @@
     display: flex;
     justify-content: center;
   }
+
+  
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -37,4 +55,5 @@
   .homepage {
     
   }
+ 
 }

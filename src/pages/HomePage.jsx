@@ -23,6 +23,7 @@ const HomePage = ({
           plans={plans}
           deletePlan={deletePlan}
           callBackToEditPlan={callBackToEditPlan}
+          openForm={openForm}
         />
       </div>
     </>
