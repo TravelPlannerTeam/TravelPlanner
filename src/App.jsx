@@ -86,7 +86,6 @@ function App() {
     axios
       .delete(`${API}/travelPlans/${planId}.json`)
       .then((response) => {
-        console.log(response);
         //calling getplans to update the list from database
         getPlans();
       })

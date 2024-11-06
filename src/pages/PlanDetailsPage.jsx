@@ -29,18 +29,25 @@ export default function PlanDetailsPage({ plans }) {
   const [accomodationList, setAccomodationList] = useState([]);
   const [activitiesList, setActivitiesList] = useState([]);
   const [packingList, setPackingList] = useState([]);
+  let plan = "";
 
   let imgToDisplay;
-  plans.filter((item) => {
+  plans.find((item) => {
     if (item.id === id) {
       imgToDisplay = item.image;
+      plan = item;
     }
   });
-
   useEffect(() => {
-    getAccommodation();
-    getActivities();
-    getPackingList();
+    //this imporves code preformance
+    const fetchData = async () => {
+      await Promise.all([
+        getAccommodation(),
+        getActivities(),
+        getPackingList(),
+      ]);
+      fetchData();
+    };
   }, []);
 
   const getAccommodation = () => {
@@ -216,8 +223,10 @@ export default function PlanDetailsPage({ plans }) {
 
       <div className="plan-details-page">
         <div className="details">
-          <h1>Plan title</h1>
-          <p>Start Date - End Date</p>
+          <h1> {plan.title}</h1>
+          <p>
+            Start Date: ({plan.startDate}) - End Date: ({plan.endDate})
+          </p>
         </div>
 
         <div className="lists">
