@@ -52,7 +52,7 @@ function App() {
             ...response.data[id],
           }))
           .filter((plan) => plan.userId === currentUser?.uid); // Filter by current user's uid
-          
+
         const newarr = array.toReversed();
         console.log(newarr);
         // save list in state
@@ -68,7 +68,7 @@ function App() {
       .post(`${API}/travelPlans.json`, planWithUser)
       .then((response) => {
         console.log(planWithUser);
-        console.log("This is the currentUser?.uid:" + currentUser?.uid)
+        console.log("This is the currentUser?.uid:" + currentUser?.uid);
         console.log(response);
         getPlans(); // Update the list of plans
         closeForm();
@@ -128,7 +128,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage plans={plans} deletePlan={deletePlan}/>
+              <HomePage plans={plans} deletePlan={deletePlan} />
             </PrivateRoute>
           }
         />
