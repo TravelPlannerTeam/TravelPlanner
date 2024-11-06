@@ -1,16 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AccommodationList from "../components/Accommodation/AccommodationList";
 import ActivitiesList from "../components/Activities/ActivitiesList";
 import PackingList from "../components/PackingList/PackingList";
 import "./planDetailsPage.css";
-import { Button, Card } from "@mantine/core";
+import { BackgroundImage, Button, Card } from "@mantine/core";
 import { useState, useEffect } from "react";
 import CreateAccommodation from "../components/Accommodation/CreateAccommodation";
 import axios from "axios";
 import { API_URL } from "../assets/API_URL";
 import CreateActivity from "../components/Activities/CreateActivity";
 import CreatePackingItem from "../components/PackingList/CreatePackingItem";
-export default function PlanDetailsPage() {
+export default function PlanDetailsPage({ plans }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
   const [isAddActivityOpen, setIsAddActivityOpen] = useState(false);
@@ -28,6 +29,13 @@ export default function PlanDetailsPage() {
   const [accomodationList, setAccomodationList] = useState([]);
   const [activitiesList, setActivitiesList] = useState([]);
   const [packingList, setPackingList] = useState([]);
+
+  let imgToDisplay;
+  plans.filter((item) => {
+    if (item.id === id) {
+      imgToDisplay = item.image;
+    }
+  });
 
   useEffect(() => {
     getAccommodation();
@@ -180,90 +188,110 @@ export default function PlanDetailsPage() {
   };
 
   return (
-    <div className="planDetailsPage homepage">
-      <Card>
-        <h3>Accommodation</h3>
+    <>
+      <div
+        className="Header"
+        style={{
+          backgroundImage: `url(${imgToDisplay})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "250px",
+          position: "relative",
+        }}
+      >
         <Button
-          onClick={openAccommodationForm}
-          variant="filled"
-          color="yellow"
-          size="sm"
-          radius="md"
+          onClick={() => {
+            navigate("/");
+          }}
         >
-          Add Accommodation
+          Back
         </Button>
-        {isAddItemOpen && (
-          <div className="form-overlay" onClick={closeAccommodationForm}>
-            <div className="form-box" onClick={(e) => e.stopPropagation()}>
-              <CreateAccommodation
-                callBackToCloseForm={closeAccommodationForm}
-                callBackToAddAccommodation={addAccommodation}
-                planId={id}
-              />
+      </div>
+      <div className="planDetailsPage homepage">
+        <Card>
+          <h3>Accommodation</h3>
+          <Button
+            onClick={openAccommodationForm}
+            variant="filled"
+            color="yellow"
+            size="sm"
+            radius="md"
+          >
+            Add Accommodation
+          </Button>
+          {isAddItemOpen && (
+            <div className="form-overlay" onClick={closeAccommodationForm}>
+              <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                <CreateAccommodation
+                  callBackToCloseForm={closeAccommodationForm}
+                  callBackToAddAccommodation={addAccommodation}
+                  planId={id}
+                />
+              </div>
             </div>
-          </div>
-        )}
-        <AccommodationList
-          callBackToDelete={deleteAccomodation}
-          accomodationList={accomodationList}
-          callBackToUpdate={updateAccommodation}
-        />
-      </Card>
+          )}
+          <AccommodationList
+            callBackToDelete={deleteAccomodation}
+            accomodationList={accomodationList}
+            callBackToUpdate={updateAccommodation}
+          />
+        </Card>
 
-      <Card>
-        <h3>Activites</h3>
-        <Button
-          onClick={openActivitiesForm}
-          variant="filled"
-          color="yellow"
-          size="sm"
-          radius="md"
-        >
-          Add Activity
-        </Button>
-        {isAddActivityOpen && (
-          <div className="form-overlay" onClick={closeActivitesForm}>
-            <div className="form-box" onClick={(e) => e.stopPropagation()}>
-              <CreateActivity
-                callBackToCloseForm={closeActivitesForm}
-                callBackToAddActivity={addActivity}
-              />
+        <Card>
+          <h3>Activites</h3>
+          <Button
+            onClick={openActivitiesForm}
+            variant="filled"
+            color="yellow"
+            size="sm"
+            radius="md"
+          >
+            Add Activity
+          </Button>
+          {isAddActivityOpen && (
+            <div className="form-overlay" onClick={closeActivitesForm}>
+              <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                <CreateActivity
+                  callBackToCloseForm={closeActivitesForm}
+                  callBackToAddActivity={addActivity}
+                />
+              </div>
             </div>
-          </div>
-        )}
-        <ActivitiesList
-          callBackToDelete={deleteActivity}
-          activitiesList={activitiesList}
-          callBackToUpdate={updateActivity}
-        />
-      </Card>
+          )}
+          <ActivitiesList
+            callBackToDelete={deleteActivity}
+            activitiesList={activitiesList}
+            callBackToUpdate={updateActivity}
+          />
+        </Card>
 
-      <Card>
-        <h3>Packing</h3>
-        <Button
-          onClick={openPackingForm}
-          variant="filled"
-          color="yellow"
-          size="sm"
-          radius="md"
-        >
-          Add Item
-        </Button>
-        {isAddPackingItemOpen && (
-          <div className="form-overlay" onClick={closePackingForm}>
-            <div className="form-box" onClick={(e) => e.stopPropagation()}>
-              <CreatePackingItem
-                callBackToCloseForm={closePackingForm}
-                callBackToAddToPackingItem={addPackingItem}
-              />
+        <Card>
+          <h3>Packing</h3>
+          <Button
+            onClick={openPackingForm}
+            variant="filled"
+            color="yellow"
+            size="sm"
+            radius="md"
+          >
+            Add Item
+          </Button>
+          {isAddPackingItemOpen && (
+            <div className="form-overlay" onClick={closePackingForm}>
+              <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                <CreatePackingItem
+                  callBackToCloseForm={closePackingForm}
+                  callBackToAddToPackingItem={addPackingItem}
+                />
+              </div>
             </div>
-          </div>
-        )}
-        <PackingList
-          packingList={packingList}
-          callBackToDelete={deletePackingItem}
-        />
-      </Card>
-    </div>
+          )}
+          <PackingList
+            packingList={packingList}
+            callBackToDelete={deletePackingItem}
+          />
+        </Card>
+      </div>
+    </>
   );
 }

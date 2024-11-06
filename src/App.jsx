@@ -14,7 +14,6 @@ import { API_URL as API } from "./assets/API_URL"; //importing API base url from
 import { useAuth } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar/Navbar";
 import PlanDetailsPage from "./pages/PlanDetailsPage";
 import CreatePlanForm from "./components/CreatePlan/CreatePlanForm";
 import Login from "./components/AuthenticationForms/Login";
@@ -26,9 +25,7 @@ function App() {
   const [plans, setPlans] = useState([]); //Store plans in state
   const [query, setQuery] = useState(""); // for the searchbar
   const [isFormOpen, setIsFormOpen] = useState(false); // per default not visible
-
   const { currentUser } = useAuth();
-
   // Open form to create a plan
   const openForm = () => setIsFormOpen(true);
   const closeForm = () => setIsFormOpen(false);
@@ -44,7 +41,6 @@ function App() {
     axios
       .get(`${API}/travelPlans.json`)
       .then((response) => {
-        console.log(response);
         const array = Object.keys(response.data)
           .map((id) => ({
             // convert the response from objects to an array
@@ -54,7 +50,6 @@ function App() {
           .filter((plan) => plan.userId === currentUser?.uid); // Filter by current user's uid
 
         const newarr = array.toReversed();
-        console.log(newarr);
         // save list in state
         setPlans(newarr);
       })
@@ -111,14 +106,6 @@ function App() {
 
   return (
     <>
-      {currentUser && (
-        <Navbar
-          openForm={openForm}
-          callBackToFilterPlans={filterPlans}
-          query={query}
-        />
-      )}
-
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -128,7 +115,14 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage plans={filteredPlans} deletePlan={deletePlan} />
+              <HomePage
+                plans={filteredPlans}
+                deletePlan={deletePlan}
+                openForm={openForm}
+                callBackToFilterPlans={filterPlans}
+                query={query}
+                currentUser={currentUser}
+              />
             </PrivateRoute>
           }
         />
@@ -136,7 +130,7 @@ function App() {
           path="/:id"
           element={
             <PrivateRoute>
-              <PlanDetailsPage />
+              <PlanDetailsPage plans={plans} />
             </PrivateRoute>
           }
         />
