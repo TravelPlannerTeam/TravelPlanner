@@ -1,4 +1,4 @@
-import { IconTrash } from "@tabler/icons-react";
+import { IconEdit, IconTrash } from "@tabler/icons-react";
 import {
   Card,
   Image,
@@ -10,8 +10,14 @@ import {
 } from "@mantine/core";
 import "./plancard.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import EditPlanForm from "../CreatePlan/EditPlanForm";
 
-const PlanCard = ({ plan, callBackToDeletePlan }) => {
+const PlanCard = ({ plan, callBackToDeletePlan, callBackToEditPlan }) => {
+  const [isFormOpen, setIsFormOpen] = useState(false); // per default not visible
+
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const month = date.toLocaleString("en-US", { month: "short" });
@@ -48,6 +54,25 @@ const PlanCard = ({ plan, callBackToDeletePlan }) => {
             Show details
           </Button>
         </Link>
+        <ActionIcon
+          onClick={openForm}
+          className="transparent-action-icon"
+          radius="md"
+          size={36}
+        >
+          <IconEdit className="delete" stroke={1} />
+        </ActionIcon>
+        {isFormOpen && (
+          <div className="form-overlay" onClick={closeForm}>
+            <div className="form-box" onClick={(e) => e.stopPropagation()}>
+              <EditPlanForm
+                callBackToEditPlan={callBackToEditPlan}
+                callBackToCloseForm={closeForm}
+                plan={plan}
+              />
+            </div>
+          </div>
+        )}
         <ActionIcon
           onClick={() => callBackToDeletePlan(plan.id)}
           className="transparent-action-icon"

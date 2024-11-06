@@ -1,14 +1,19 @@
-import { Loader } from '@mantine/core';
+import { Loader } from "@mantine/core";
 import PlanCard from "./PlanCard";
 import "./planslist.css";
 
-const PlansList = ({ plans, deletePlan }) => {
+const PlansList = ({ plans, deletePlan, callBackToEditPlan }) => {
   if (!plans) return <Loader color="yellow" size="xl" type="dots" />;
 
   return (
     <div className="plans-list">
       {plans.map((plan) => (
-        <PlanCard plan={plan} key={plan.id} callBackToDeletePlan={deletePlan}/>
+        <PlanCard
+          plan={plan}
+          key={plan.id}
+          callBackToEditPlan={callBackToEditPlan}
+          callBackToDeletePlan={deletePlan}
+        />
       ))}
     </div>
   );

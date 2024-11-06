@@ -72,11 +72,10 @@ function App() {
   };
 
   //function to edit an existing plan
-  const editPlan = (planId) => {
+  const editPlan = (plan) => {
     axios
-      .patch(`${API}/travelPlans/${planId}.json`)
+      .patch(`${API}travelPlans/${plan.id}.json`, plan)
       .then((response) => {
-        console.log(response);
         //calling getplans to update the list from database
         getPlans();
       })
@@ -118,6 +117,7 @@ function App() {
               <HomePage
                 plans={filteredPlans}
                 deletePlan={deletePlan}
+                callBackToEditPlan={editPlan}
                 openForm={openForm} // used in Navbar
                 callBackToFilterPlans={filterPlans} // used in Navbar
                 query={query} // used in Navbar
