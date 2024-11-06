@@ -11,6 +11,15 @@ export default function ActivitiesList({
 
   const openUpdateForm = (id) => setEditingId(id);
   const closeUpdateForm = () => setEditingId(null);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const day = date.getDate();
+    return `${day} ${month}`;
+  };
+
+
   if (activitiesList === null) return <h3>Loading...</h3>;
 
   return (
@@ -29,8 +38,8 @@ export default function ActivitiesList({
             </Group>
 
             <Text size="sm">{activity.type}</Text>
-            <Text>Start Date: {activity.start}</Text>
-            <Text>End Date: {activity.end}</Text>
+            <Text>Start Date: {formatDate(activity.start)}</Text>
+            <Text>End Date: {formatDate(activity.end)}</Text>
             <Group>
               <Button
                 color="blue"
