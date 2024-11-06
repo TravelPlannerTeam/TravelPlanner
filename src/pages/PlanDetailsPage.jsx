@@ -195,102 +195,132 @@ export default function PlanDetailsPage({ plans }) {
           backgroundImage: `url(${imgToDisplay})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "250px",
+          height: "25vh",
           position: "relative",
+          marginBottom: "2em",
         }}
       >
         <Button
+          className="back-button"
+          variant="white"
+          color="black"
+          size="md"
+          radius="md"
           onClick={() => {
             navigate("/");
           }}
         >
-          Back
+          Back to all trips
         </Button>
       </div>
-      <div className="planDetailsPage homepage">
-        <Card>
-          <h3>Accommodation</h3>
-          <Button
-            onClick={openAccommodationForm}
-            variant="filled"
-            color="yellow"
-            size="sm"
-            radius="md"
-          >
-            Add Accommodation
-          </Button>
-          {isAddItemOpen && (
-            <div className="form-overlay" onClick={closeAccommodationForm}>
-              <div className="form-box" onClick={(e) => e.stopPropagation()}>
-                <CreateAccommodation
-                  callBackToCloseForm={closeAccommodationForm}
-                  callBackToAddAccommodation={addAccommodation}
-                  planId={id}
-                />
-              </div>
-            </div>
-          )}
-          <AccommodationList
-            callBackToDelete={deleteAccomodation}
-            accomodationList={accomodationList}
-            callBackToUpdate={updateAccommodation}
-          />
-        </Card>
 
-        <Card>
-          <h3>Activites</h3>
-          <Button
-            onClick={openActivitiesForm}
-            variant="filled"
-            color="yellow"
-            size="sm"
-            radius="md"
-          >
-            Add Activity
-          </Button>
-          {isAddActivityOpen && (
-            <div className="form-overlay" onClick={closeActivitesForm}>
-              <div className="form-box" onClick={(e) => e.stopPropagation()}>
-                <CreateActivity
-                  callBackToCloseForm={closeActivitesForm}
-                  callBackToAddActivity={addActivity}
-                />
-              </div>
-            </div>
-          )}
-          <ActivitiesList
-            callBackToDelete={deleteActivity}
-            activitiesList={activitiesList}
-            callBackToUpdate={updateActivity}
-          />
-        </Card>
+      <div className="plan-details-page">
+        <div className="details">
+          <h1>Plan title</h1>
+          <p>Start Date - End Date</p>
+        </div>
 
-        <Card>
-          <h3>Packing</h3>
-          <Button
-            onClick={openPackingForm}
-            variant="filled"
-            color="yellow"
-            size="sm"
-            radius="md"
-          >
-            Add Item
-          </Button>
-          {isAddPackingItemOpen && (
-            <div className="form-overlay" onClick={closePackingForm}>
-              <div className="form-box" onClick={(e) => e.stopPropagation()}>
-                <CreatePackingItem
-                  callBackToCloseForm={closePackingForm}
-                  callBackToAddToPackingItem={addPackingItem}
-                />
-              </div>
+        <div className="lists">
+          {/* PACKING LIST  */}
+          <section className="box">
+            <div className="list-top">
+              <h4>🧳 Packing List</h4>
+              <Button
+                onClick={openPackingForm}
+                variant="filled"
+                color="grey"
+                size="sm"
+                radius="md"
+              >
+                +
+              </Button>
             </div>
-          )}
-          <PackingList
-            packingList={packingList}
-            callBackToDelete={deletePackingItem}
-          />
-        </Card>
+
+            {isAddPackingItemOpen && (
+              <div className="form-overlay" onClick={closePackingForm}>
+                <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                  <CreatePackingItem
+                    callBackToCloseForm={closePackingForm}
+                    callBackToAddToPackingItem={addPackingItem}
+                  />
+                </div>
+              </div>
+            )}
+            <PackingList
+              packingList={packingList}
+              callBackToDelete={deletePackingItem}
+            />
+          </section>
+
+          {/* ACCOMMODATION  */}
+
+          <section className="box">
+            <div className="list-top">
+              <h4>🏡 Accommodation</h4>
+              <Button
+                onClick={openAccommodationForm}
+                variant="filled"
+                color="grey"
+                size="sm"
+                radius="md"
+              >
+                +
+              </Button>
+            </div>
+
+            {isAddItemOpen && (
+              <div className="form-overlay" onClick={closeAccommodationForm}>
+                <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                  <CreateAccommodation
+                    callBackToCloseForm={closeAccommodationForm}
+                    callBackToAddAccommodation={addAccommodation}
+                    planId={id}
+                  />
+                </div>
+              </div>
+            )}
+
+            <AccommodationList
+              callBackToDelete={deleteAccomodation}
+              accomodationList={accomodationList}
+              callBackToUpdate={updateAccommodation}
+            />
+          </section>
+
+          {/* ACTIVITIES  */}
+
+          <section className="box">
+            <div className="list-top">
+              <h4>🏃 Activities</h4>
+              <Button
+                onClick={openActivitiesForm}
+                variant="filled"
+                color="grey"
+                size="sm"
+                radius="md"
+              >
+                +
+              </Button>
+            </div>
+
+            {isAddActivityOpen && (
+              <div className="form-overlay" onClick={closeActivitesForm}>
+                <div className="form-box" onClick={(e) => e.stopPropagation()}>
+                  <CreateActivity
+                    callBackToCloseForm={closeActivitesForm}
+                    callBackToAddActivity={addActivity}
+                  />
+                </div>
+              </div>
+            )}
+
+            <ActivitiesList
+              callBackToDelete={deleteActivity}
+              activitiesList={activitiesList}
+              callBackToUpdate={updateActivity}
+            />
+          </section>
+        </div>
       </div>
     </>
   );
