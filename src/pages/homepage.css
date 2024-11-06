@@ -1,8 +1,16 @@
 .homepage {
-    margin: 10em auto;
-    padding: 1em 2em;
+    margin: 0.5em auto;
     overflow: hidden;
     max-width: 90%;
     box-sizing: border-box;
     align-items: center;
+    gap: 1em; 
 }
+
+
+@media (min-width: 990px) and (max-width: 1249px) {
+    .homepage {
+      margin: 0.5em auto;
+      max-width: 98%;
+    }
+  }

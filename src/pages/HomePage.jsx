@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar/Navbar";
 import "../pages/homepage.css";
 import PlansList from "../components/Plan/PlansList";
 import Navbar from "../components/Navbar/Navbar";

@@ -2,7 +2,7 @@
   background-color: var(--bg-color);
   margin: 1em;
   width: calc(33.33% - 2em);
-  min-width: 300px;
+  min-width: 327px; /* like navbar */
   box-sizing: border-box;
 }
 

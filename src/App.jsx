@@ -118,10 +118,9 @@ function App() {
               <HomePage
                 plans={filteredPlans}
                 deletePlan={deletePlan}
-                openForm={openForm}
-                callBackToFilterPlans={filterPlans}
-                query={query}
-                currentUser={currentUser}
+                openForm={openForm} // used in Navbar
+                callBackToFilterPlans={filterPlans} // used in Navbar
+                query={query} // used in Navbar
               />
             </PrivateRoute>
           }
