@@ -6,28 +6,30 @@ import { WEATHER_API_TOKEN } from "../assets/API_URL";
 export default function Weather({ city }) {
   const [weatherData, setWeatherData] = useState(null);
 
-  const Apikey = "078f0f6d0f3a4805b3660728af344b64";
   const widgetStyles = {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
+    justifyContenet: "space-between",
     padding: "10px",
     borderRadius: "10px",
     backgroundColor: "#4a90e2",
     color: "#ffffff",
-    width: "150px",
+    width: "30vw",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+    position: "fixed",
+    marginLeft: "70vw",
   };
 
   const tempStyles = {
-    fontSize: "2rem",
+    fontSize: "1rem",
     fontWeight: "bold",
-    margin: "5px 0",
+    margin: "0 1em",
   };
 
   const additionalInfoStyles = {
     fontSize: "0.8rem",
-    marginTop: "5px",
+    margin: "0 2em",
   };
   useEffect(() => {
     axios

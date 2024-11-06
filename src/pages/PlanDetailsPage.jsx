@@ -2,14 +2,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import AccommodationList from "../components/Accommodation/AccommodationList";
 import ActivitiesList from "../components/Activities/ActivitiesList";
 import PackingList from "../components/PackingList/PackingList";
-import "./planDetailsPage.css";
-import { BackgroundImage, Button, Card } from "@mantine/core";
-import { useState, useEffect } from "react";
-import CreateAccommodation from "../components/Accommodation/CreateAccommodation";
-import axios from "axios";
-import { API_URL } from "../assets/API_URL";
 import CreateActivity from "../components/Activities/CreateActivity";
 import CreatePackingItem from "../components/PackingList/CreatePackingItem";
+import CreateAccommodation from "../components/Accommodation/CreateAccommodation";
+import "./planDetailsPage.css";
+import { Button } from "@mantine/core";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "../assets/API_URL";
+import Weather from "../components/Weather";
 export default function PlanDetailsPage({ plans }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -207,6 +208,7 @@ export default function PlanDetailsPage({ plans }) {
           marginBottom: "2em",
         }}
       >
+        <Weather className="weather" city={plan.destination} />
         <Button
           className="back-button"
           variant="white"
