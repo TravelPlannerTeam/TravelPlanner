@@ -8,3 +8,33 @@
     flex-wrap: wrap;
     max-width: 100%
   }
+
+
+  /***** RESPONSIVE DESIGN *******/ 
+
+/* Extra Small - Mobile Portrait */
+@media (max-width: 767px) {
+  .plans-list {
+    margin-top: 5em; 
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .plans-list {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+@media (min-width: 990px) and (max-width: 1249px) {
+  .homepage {
+    
+  }
+}

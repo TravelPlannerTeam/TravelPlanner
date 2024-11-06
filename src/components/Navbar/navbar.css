@@ -80,6 +80,7 @@
   #navbar {
     margin: 0.5em auto;
     height: 4em;
+
     width: fit-content
   }
 
@@ -98,7 +99,7 @@
   }
 
   #navbar-search input {
-    min-width: 260px;
+    min-width: 245px;
     max-width: 280px;
   }
 
