@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
 import "./accommodation-list.css"
 
@@ -34,15 +34,14 @@ export default function CreateAccommodation({
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
           <h2>🏡 Add new accommodation</h2>
-          <Button
+          <CloseButton
+            className="close"
             onClick={callBackToCloseForm}
             variant="subtle"
             color="grey"
             size="lg"
             radius="lg"
-          >
-            X
-          </Button>
+          ></CloseButton>
         </div>
         <div className="inputs">
           <label>
@@ -67,10 +66,10 @@ export default function CreateAccommodation({
               <option value="" disabled>
                 Pick category
               </option>
-              <option value="Resort">Airbnb</option>
+              <option value="Airbnb">Airbnb</option>
               <option value="Bed and Breakfast">Bed and Breakfast</option>
               <option value="Camping">Camping</option>
-              <option value="Resort">Friends Home</option>
+              <option value="Friends Home">Friends Home</option>
               <option value="Hotel">Hotel</option>
               <option value="Hostel">Hostel</option>
               <option value="Resort">Resort</option>
@@ -100,7 +99,6 @@ export default function CreateAccommodation({
               />
             </label>
           </div>
-          </div>
           <Button
           type="submit"
           variant="filled"
@@ -111,8 +109,7 @@ export default function CreateAccommodation({
         >
           Add accommodation
         </Button>
-        ;
-
+          </div>
       </form>
     </>
   );

@@ -1,5 +1,6 @@
-import { Button } from "@mantine/core";
+import { Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
+import "./accommodation-list.css"
 
 export default function UpdateAccommodation({
   callBackToCloseForm,
@@ -35,15 +36,14 @@ export default function UpdateAccommodation({
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
           <h2>⛺️ Update accommodation</h2>
-          <Button
+          <CloseButton
+            className="close"
             onClick={callBackToCloseForm}
             variant="subtle"
             color="grey"
             size="lg"
             radius="lg"
-          >
-            X
-          </Button>
+          ></CloseButton>
         </div>
         <div className="inputs">
           <label>
@@ -57,17 +57,17 @@ export default function UpdateAccommodation({
             />
           </label>
 
-          <label>
+          <label className="dropdown">
           Select a housing type
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               required
             >
-              <option value="Resort">Airbnb</option>
+              <option value="Airbnb">Airbnb</option>
               <option value="Bed and Breakfast">Bed and Breakfast</option>
               <option value="Camping">Camping</option>
-              <option value="Resort">Friends Home</option>
+              <option value="Friends Home">Friends Home</option>
               <option value="Hotel">Hotel</option>
               <option value="Hostel">Hostel</option>
               <option value="Resort">Resort</option>

@@ -1,4 +1,4 @@
-import { Box, Button } from "@mantine/core";
+import { Box, Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
 
 export default function CreatePackingItem({
@@ -27,16 +27,15 @@ export default function CreatePackingItem({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Add a new Item</h2>
-          <Button
+          <h2>🕶️ Add new item</h2>
+          <CloseButton
+            className="close"
             onClick={callBackToCloseForm}
             variant="subtle"
             color="grey"
             size="lg"
             radius="lg"
-          >
-            X
-          </Button>
+          ></CloseButton>
         </div>
         <div className="inputs">
           <label>
@@ -50,6 +49,16 @@ export default function CreatePackingItem({
               maxLength="80"
             />
           </label>
+          <Button
+            type="submit"
+            variant="filled"
+            color="yellow"
+            size="lg"
+            radius="md"
+            fullwidth
+          >
+            Add item
+          </Button>
 
           {/* <label>
             Type
@@ -64,16 +73,6 @@ export default function CreatePackingItem({
             />
           </label> */}
         </div>
-        <Button
-          type="submit"
-          variant="filled"
-          color="yellow"
-          size="lg"
-          radius="md"
-        >
-          Add Item
-        </Button>
-        ;
       </form>
     </>
   );

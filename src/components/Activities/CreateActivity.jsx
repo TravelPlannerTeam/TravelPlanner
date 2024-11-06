@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
 
 export default function CreateActivity({
@@ -33,15 +33,14 @@ export default function CreateActivity({
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
           <h2>🪂 Add new activity</h2>
-          <Button
+          <CloseButton
+            className="close"
             onClick={callBackToCloseForm}
             variant="subtle"
             color="grey"
             size="lg"
             radius="lg"
-          >
-            X
-          </Button>
+          ></CloseButton>
         </div>
         <div className="inputs">
           <label>
