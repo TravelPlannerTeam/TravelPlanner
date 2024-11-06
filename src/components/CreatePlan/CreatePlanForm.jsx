@@ -1,4 +1,5 @@
 import { Button } from "@mantine/core";
+import { CloseButton } from '@mantine/core';
 import { useState } from "react";
 import axios from "axios";
 
@@ -67,15 +68,15 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
         <h2>Create a new travel plan</h2>
-        <Button
+        <CloseButton
+          className="close"
           onClick={callBackToCloseForm}
           variant="subtle"
           color="grey"
           size="lg"
           radius="lg"
         >
-          X
-        </Button>
+        </CloseButton>
         </div>
         <div className="inputs">
           <label>
@@ -145,6 +146,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
           color="yellow"
           size="lg"
           radius="md"
+          fullWidth
         >
           Create new plan
         </Button>
