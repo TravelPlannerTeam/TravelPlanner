@@ -1,13 +1,13 @@
-import { Card, Text, Button, Group } from "@mantine/core";
+import { Card, Text, Button, Group, List } from "@mantine/core";
 
 const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
   if (packingList === null) return <h3>Loading...</h3>;
 
   return (
-    <div className="detailsList">
+    <List>
       {packingList.map((item) => {
         return (
-          <Card shadow="sm" padding="lg" radius="sm" withBorder key={item.id}>
+          <List.Item key={item.id}>
             <Group justify="space-between" mt="md" mb="xs">
               <Text fw={500}>{item.name}</Text>
             </Group>
@@ -24,10 +24,10 @@ const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
                 Delete
               </Button>
             </Group>
-          </Card>
+          </List.Item>
         );
       })}
-    </div>
+    </List>
   );
 };
 
