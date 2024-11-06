@@ -128,7 +128,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage plans={plans} deletePlan={deletePlan} />
+              <HomePage plans={filteredPlans} deletePlan={deletePlan} />
             </PrivateRoute>
           }
         />
