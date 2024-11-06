@@ -32,7 +32,7 @@ export default function CreateActivity({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Add a new accommodation</h2>
+          <h2>Add a new Activity</h2>
           <Button
             onClick={callBackToCloseForm}
             variant="subtle"
@@ -48,7 +48,7 @@ export default function CreateActivity({
             Name
             <input
               type="text"
-              placeholder="Four Seasons"
+              placeholder="Hiking trip"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -57,10 +57,10 @@ export default function CreateActivity({
           </label>
 
           <label>
-            Type
+            Description
             <input
               type="text"
-              placeholder="Hotel"
+              placeholder="Hiking in the Black Forest"
               value={type}
               onChange={(e) => setType(e.target.value)}
               required
