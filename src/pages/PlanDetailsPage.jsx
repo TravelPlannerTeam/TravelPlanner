@@ -9,11 +9,12 @@ import CreateAccommodation from "../components/Accommodation/CreateAccommodation
 import axios from "axios";
 import { API_URL } from "../assets/API_URL";
 import CreateActivity from "../components/Activities/CreateActivity";
-
+import CreatePackingItem from "../components/PackingList/CreatePackingItem";
 export default function PlanDetailsPage() {
   const { id } = useParams();
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
   const [isAddActivityOpen, setIsAddActivityOpen] = useState(false);
+  const [isAddPackingItemOpen, setIsAddPackingItemOpen] = useState(false);
 
   const openAccommodationForm = () => setIsAddItemOpen(true);
   const closeAccommodationForm = () => setIsAddItemOpen(false);
@@ -21,12 +22,17 @@ export default function PlanDetailsPage() {
   const openActivitiesForm = () => setIsAddActivityOpen(true);
   const closeActivitesForm = () => setIsAddActivityOpen(false);
 
+  const openPackingForm = () => setIsAddPackingItemOpen(true);
+  const closePackingForm = () => setIsAddPackingItemOpen(false);
+
   const [accomodationList, setAccomodationList] = useState([]);
   const [activitiesList, setActivitiesList] = useState([]);
+  const [packingList, setPackingList] = useState([]);
 
   useEffect(() => {
     getAccommodation();
     getActivities();
+    getPackingList();
   }, []);
 
   const getAccommodation = () => {
@@ -129,6 +135,42 @@ export default function PlanDetailsPage() {
       })
       .catch((e) => console.log("couldnt update activity", e));
   };
+
+  const getPackingList = () => {
+    axios
+      .get(`${API_URL}/travelPlans/${id}/packing.json`)
+      .then((response) => {
+        const array = Object.keys(response.data).map((id) => ({
+          //convert the response from objects to an array
+          id,
+          ...response.data[id],
+        }));
+        const newarr = array.toReversed();
+        //save list in state
+
+        setPackingList(newarr);
+      })
+      .catch((e) =>
+        console.log("Error fetching packing List from Firebase", e)
+      );
+  };
+  const addPackingItem = (newItem) => {
+    axios
+      .post(`${API_URL}travelPlans/${id}/packing.json`, newItem)
+      .then((response) => {
+        getPackingList();
+      })
+      .catch((e) => console.log("couldnt add Packing Item", e));
+  };
+  const deletePackingItem = (itemId) => {
+    axios
+      .delete(`${API_URL}travelPlans/${id}/packing/${itemId}.json`)
+      .then((response) => {
+        getPackingList();
+      })
+      .catch((e) => console.log("Couldnt Delete packing item", e));
+  };
+
   return (
     <div className="planDetailsPage homepage">
       <Card>
@@ -187,9 +229,32 @@ export default function PlanDetailsPage() {
           callBackToUpdate={updateActivity}
         />
       </Card>
+
       <Card>
         <h3>Packing</h3>
-        <PackingList planId={id} />
+        <Button
+          onClick={openPackingForm}
+          variant="filled"
+          color="yellow"
+          size="sm"
+          radius="md"
+        >
+          Add Item
+        </Button>
+        {isAddPackingItemOpen && (
+          <div className="form-overlay" onClick={closePackingForm}>
+            <div className="form-box" onClick={(e) => e.stopPropagation()}>
+              <CreatePackingItem
+                callBackToCloseForm={closePackingForm}
+                callBackToAddToPackingItem={addPackingItem}
+              />
+            </div>
+          </div>
+        )}
+        <PackingList
+          packingList={packingList}
+          callBackToDelete={deletePackingItem}
+        />
       </Card>
     </div>
   );
