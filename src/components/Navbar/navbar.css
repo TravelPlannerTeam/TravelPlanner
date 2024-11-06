@@ -80,6 +80,7 @@
   #navbar {
     margin: 0.5em auto;
     height: 4em;
+    width: fit-content
   }
 
   .title, .navbar-button, .logo {
@@ -89,11 +90,16 @@
   #navbar-search {
     flex-grow: 1;
     width: 100%;
-    padding-right: 1em;
+    padding-right: 0.5em;
   }
 
-  .nav-right, #navbar-search input {
+  .nav-right {
     width: fit-content;
+  }
+
+  #navbar-search input {
+    min-width: 260px;
+    max-width: 280px;
   }
 
   .burger {
