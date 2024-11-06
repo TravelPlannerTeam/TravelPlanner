@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { IconSearch } from "@tabler/icons-react";
 
 import "./navbar.css";
 import logo from "../../assets/logo.png";
@@ -26,6 +27,7 @@ const Navbar = ({ openForm, callBackToFilterPlans, query }) => {
       </div>
       <div className="nav-right">
         <div id="navbar-search">
+        <IconSearch className="search-icon" size={18} color="#5c5656" />
           <input
             type="search"
             placeholder="Search a plan..."
