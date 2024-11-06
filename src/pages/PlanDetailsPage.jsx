@@ -50,7 +50,7 @@ export default function PlanDetailsPage() {
 
           setAccomodationList(newarr);
         } else {
-          setAccomodationList([{ name: "No Accommodations" }]);
+          setAccomodationList([]);
         }
       })
       .catch((e) =>
@@ -93,15 +93,19 @@ export default function PlanDetailsPage() {
     axios
       .get(`${API_URL}/travelPlans/${id}/activities.json`)
       .then((response) => {
-        const array = Object.keys(response.data).map((id) => ({
-          //convert the response from objects to an array
-          id,
-          ...response.data[id],
-        }));
-        const newarr = array.toReversed();
-        //save list in state
+        if (response.data) {
+          const array = Object.keys(response.data).map((id) => ({
+            //convert the response from objects to an array
+            id,
+            ...response.data[id],
+          }));
+          const newarr = array.toReversed();
+          //save list in state
 
-        setActivitiesList(newarr);
+          setActivitiesList(newarr);
+        } else {
+          setActivitiesList([]);
+        }
       })
       .catch((e) =>
         console.log("Error fetching Activity List from Firebase", e)
@@ -140,15 +144,19 @@ export default function PlanDetailsPage() {
     axios
       .get(`${API_URL}/travelPlans/${id}/packing.json`)
       .then((response) => {
-        const array = Object.keys(response.data).map((id) => ({
-          //convert the response from objects to an array
-          id,
-          ...response.data[id],
-        }));
-        const newarr = array.toReversed();
-        //save list in state
+        if (response.data) {
+          const array = Object.keys(response.data).map((id) => ({
+            //convert the response from objects to an array
+            id,
+            ...response.data[id],
+          }));
+          const newarr = array.toReversed();
+          //save list in state
 
-        setPackingList(newarr);
+          setPackingList(newarr);
+        } else {
+          setPackingList([]);
+        }
       })
       .catch((e) =>
         console.log("Error fetching packing List from Firebase", e)
