@@ -1,10 +1,12 @@
 import { Button } from "@mantine/core";
+import { CloseButton } from '@mantine/core';
 import { useState } from "react";
 import axios from "axios";
 
 import "./create-plan-form.css";
 
 import { UNSPLASH_API_URL } from "../../assets/API_URL";
+import { UNSPLASH_API_TOKEN } from "../../assets/API_URL";
 
 const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
   const [title, setTitle] = useState("");
@@ -22,11 +24,10 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
     // Fetch image URL from Unsplash
     async function fetchUnsplashPhotos() {
       try {
-        const token = "h9klRUI4KbqMlA4Wb2ssyJ3mVCS_eO2vV-0PeftUolE";
         const response = await axios.get(
           `${UNSPLASH_API_URL}?query=${destination}`,
           {
-            headers: { Authorization: `Client-ID ${token}` },
+            headers: { Authorization: `Client-ID ${UNSPLASH_API_TOKEN}` },
           }
         );
 
@@ -67,15 +68,15 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
         <h2>Create a new travel plan</h2>
-        <Button
+        <CloseButton
+          className="close"
           onClick={callBackToCloseForm}
           variant="subtle"
           color="grey"
           size="lg"
           radius="lg"
         >
-          X
-        </Button>
+        </CloseButton>
         </div>
         <div className="inputs">
           <label>
@@ -86,7 +87,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              maxLength="80"
+              maxLength="30"
             />
           </label>
 
@@ -100,7 +101,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
               required
               rows="3"
               cols="40"
-              maxLength="350"
+              maxLength="150"
             />
           </label>
 
@@ -145,6 +146,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
           color="yellow"
           size="lg"
           radius="md"
+          fullWidth
         >
           Create new plan
         </Button>

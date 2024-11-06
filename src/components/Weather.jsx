@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { WEATHER_API_URL } from "../assets/API_URL";
+import { WEATHER_API_TOKEN } from "../assets/API_URL";
 
 export default function Weather({ city }) {
   const [weatherData, setWeatherData] = useState(null);
@@ -29,7 +31,7 @@ export default function Weather({ city }) {
   };
   useEffect(() => {
     axios
-      .get(`https://api.weatherbit.io/v2.0/current?city=${city}&key=${Apikey}`)
+      .get(`${WEATHER_API_URL}?city=${city}&key=${WEATHER_API_TOKEN}`)
       .then((response) => {
         setWeatherData(response.data.data[0]);
         console.log(response);

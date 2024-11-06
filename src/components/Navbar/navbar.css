@@ -22,10 +22,10 @@
 }
 
 
-.logo {
-  margin: 1em;
-  height: 3em;
-  width: 3em;
+#navbar .logo {
+  margin: 0.7em;
+  max-height: 2.5em;
+  width: auto;
 }
 
 .nav-left {
@@ -37,17 +37,17 @@
 .nav-right {
   display: flex;
   justify-content: space-between;
-  margin-right: 1em;
   gap: 1em;
 }
 
 #navbar-search {
-  display: flex;
+  position: relative;
+  align-items: center;
 }
 
 #navbar-search input {
   border-radius: 0.7em;
-  padding: 0.8em 1.5em;
+  padding: 0.8em 1.5em 0.8em 2.5em;
   font-size: 1em;
   border: 0.1em solid var(--bg-color);
   color: var(--text-color);
@@ -56,4 +56,13 @@
 #navbar-search input:focus {
   border: 0.1em solid var(--primary-color);
   outline: none;
+}
+
+#navbar-search .search-icon {
+  position: absolute;
+  left: 0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  font-size: 1.2em;
 }

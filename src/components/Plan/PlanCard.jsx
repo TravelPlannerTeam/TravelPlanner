@@ -43,8 +43,8 @@ const PlanCard = ({ plan, callBackToDeletePlan }) => {
       </Card.Section>
 
       <Group mt="xs">
-        <Link to={`/${plan.id}`}>
-          <Button radius="md" style={{ flex: 1 }} color="grey">
+        <Link to={`/${plan.id}`} style={{ flex: 1 }}>
+          <Button radius="md" color="grey" fullWidth>
             Show details
           </Button>
         </Link>
