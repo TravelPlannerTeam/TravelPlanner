@@ -87,7 +87,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              maxLength="80"
+              maxLength="30"
             />
           </label>
 
@@ -101,7 +101,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
               required
               rows="3"
               cols="40"
-              maxLength="350"
+              maxLength="150"
             />
           </label>
 
