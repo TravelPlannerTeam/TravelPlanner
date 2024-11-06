@@ -6,7 +6,7 @@ export default function CreatePackingItem({
   callBackToAddToPackingItem,
 }) {
   const [name, setName] = useState("");
-  const [type, setType] = useState("");
+  // const [type, setType] = useState("");
   const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
@@ -14,11 +14,11 @@ export default function CreatePackingItem({
 
     const newItem = {
       name: name,
-      type: type,
+      // type: type,
     };
     callBackToAddToPackingItem(newItem);
     setName("");
-    setType("");
+    // setType("");
 
     callBackToCloseForm();
   };
@@ -43,7 +43,7 @@ export default function CreatePackingItem({
             Name
             <input
               type="text"
-              placeholder="hiking shoes"
+              placeholder="Hiking shoes"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -51,7 +51,7 @@ export default function CreatePackingItem({
             />
           </label>
 
-          <label>
+          {/* <label>
             Type
             <textarea
               className="textarea"
@@ -62,7 +62,7 @@ export default function CreatePackingItem({
               cols="40"
               maxLength="80"
             />
-          </label>
+          </label> */}
         </div>
         <Button
           type="submit"

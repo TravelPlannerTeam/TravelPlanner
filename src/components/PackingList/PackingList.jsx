@@ -1,4 +1,7 @@
-import { Card, Text, Button, Group, List } from "@mantine/core";
+import { Card, Text, Button, Group, List, ActionIcon } from "@mantine/core";
+import { IconTrash } from "@tabler/icons-react";
+
+import "./packing-list.css";
 
 const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
   if (packingList === null) return <h3>Loading...</h3>;
@@ -7,24 +10,30 @@ const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
     <List>
       {packingList.map((item) => {
         return (
-          <List.Item key={item.id}>
-            <Group justify="space-between" mt="md" mb="xs">
-              <Text fw={500}>{item.name}</Text>
-            </Group>
-
-            <Text size="sm">{item.type}</Text>
-
-            <Group>
-              <Button
-                color="red"
-                mt="sm"
-                radius="sm"
-                onClick={() => callBackToDelete(item.id)}
+          <div>
+            <List.Item key={item.id} className="packing-list-item">
+              <Group
+                justify="flex-start"
+                mt="md"
+                mb="xs"
+                className="packing-list-content"
               >
-                Delete
-              </Button>
-            </Group>
-          </List.Item>
+                <Group spacing="xs">
+                  <Text fw={600}>{item.name}</Text>
+                  {/* <Text size="sm">{item.type}</Text> */}
+                </Group>
+
+                <ActionIcon
+                  onClick={() => callBackToDelete(item.id)}
+                  className="transparent-action-icon"
+                  radius="md"
+                  size={36}
+                >
+                  <IconTrash className="delete" stroke={1} />
+                </ActionIcon>
+              </Group>
+            </List.Item>
+          </div>
         );
       })}
     </List>
