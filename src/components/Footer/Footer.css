@@ -1,0 +1,16 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid rgb(198, 188, 188);
+  }
+  
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--mantine-spacing-md) var(--mantine-spacing-md);
+
+  }
+  
+ 
