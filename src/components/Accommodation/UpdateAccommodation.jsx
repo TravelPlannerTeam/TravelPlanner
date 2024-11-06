@@ -34,7 +34,7 @@ export default function UpdateAccommodation({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Update accommodation</h2>
+          <h2>⛺️ Update accommodation</h2>
           <Button
             onClick={callBackToCloseForm}
             variant="subtle"
@@ -58,17 +58,18 @@ export default function UpdateAccommodation({
           </label>
 
           <label>
-            Type
+          Select a housing type
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               required
             >
+              <option value="Resort">Airbnb</option>
+              <option value="Bed and Breakfast">Bed and Breakfast</option>
+              <option value="Camping">Camping</option>
+              <option value="Resort">Friends Home</option>
               <option value="Hotel">Hotel</option>
               <option value="Hostel">Hostel</option>
-              <option value="Rental">Rental</option>
-              <option value="Motel">Motel</option>
-              <option value="Bed and Breakfast">Bed and Breakfast</option>
               <option value="Resort">Resort</option>
             </select>
           </label>
@@ -96,16 +97,17 @@ export default function UpdateAccommodation({
               />
             </label>
           </div>
-        </div>
-        <Button
+          <Button
           type="submit"
           variant="filled"
           color="yellow"
           size="lg"
           radius="md"
+          fullWidth
         >
-          update Accommodation
+          Save changes
         </Button>
+        </div>
       </form>
     </>
   );

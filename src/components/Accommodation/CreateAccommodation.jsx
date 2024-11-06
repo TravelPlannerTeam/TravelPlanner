@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import { useState } from "react";
+import "./accommodation-list.css"
 
 export default function CreateAccommodation({
   callBackToCloseForm,
@@ -32,7 +33,7 @@ export default function CreateAccommodation({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Add a new accommodation</h2>
+          <h2>🏡 Add new accommodation</h2>
           <Button
             onClick={callBackToCloseForm}
             variant="subtle"
@@ -56,21 +57,22 @@ export default function CreateAccommodation({
             />
           </label>
 
-          <label>
-            Type
+          <label className="dropdown">
+            Select a housing type
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               required
             >
               <option value="" disabled>
-                Pick Value
+                Pick category
               </option>
+              <option value="Resort">Airbnb</option>
+              <option value="Bed and Breakfast">Bed and Breakfast</option>
+              <option value="Camping">Camping</option>
+              <option value="Resort">Friends Home</option>
               <option value="Hotel">Hotel</option>
               <option value="Hostel">Hostel</option>
-              <option value="Rental">Rental</option>
-              <option value="Motel">Motel</option>
-              <option value="Bed and Breakfast">Bed and Breakfast</option>
               <option value="Resort">Resort</option>
             </select>
           </label>
@@ -98,17 +100,19 @@ export default function CreateAccommodation({
               />
             </label>
           </div>
-        </div>
-        <Button
+          </div>
+          <Button
           type="submit"
           variant="filled"
           color="yellow"
           size="lg"
           radius="md"
+          fullWidth
         >
-          Add Accommodation
+          Add accommodation
         </Button>
         ;
+
       </form>
     </>
   );

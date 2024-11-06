@@ -1,6 +1,30 @@
 .accommodation-card {
-    margin: 1em;
-    background-color: white;
-    width: 100%;
-    box-sizing: border-box;
+  margin: 1em;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.dropdown select {
+  margin: 1em 0em;
+  padding: 0.8em 2em;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--text-color);
+  border-radius: 1.5em;
+  background-color: white;
+  appearance: none;
+  border: 1px solid transparent;
+}
+
+.dropdown select:focus {
+  outline: none;
+  border: 0.1em solid var(--primary-color);
 }
