@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import "../pages/homepage.css";
 import PlansList from "../components/Plan/PlansList";
+import Footer from "../components/Footer/Footer";
 
 const HomePage = ({
   plans,
@@ -26,6 +27,7 @@ const HomePage = ({
           openForm={openForm}
         />
       </div>
+      <Footer />
     </>
   );
 };
