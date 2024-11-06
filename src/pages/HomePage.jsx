@@ -8,7 +8,7 @@ const HomePage = ({
   openForm,
   callBackToFilterPlans,
   query,
-  currentUser,
+  callBackToEditPlan,
 }) => {
   return (
     <>
@@ -19,7 +19,11 @@ const HomePage = ({
       />
 
       <div className="homepage">
-        <PlansList plans={plans} deletePlan={deletePlan} />
+        <PlansList
+          plans={plans}
+          deletePlan={deletePlan}
+          callBackToEditPlan={callBackToEditPlan}
+        />
       </div>
     </>
   );
