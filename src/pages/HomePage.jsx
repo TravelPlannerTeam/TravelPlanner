@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import "../pages/homepage.css";
 import PlansList from "../components/Plan/PlansList";
-import Navbar from "../components/Navbar/Navbar";
 
 const HomePage = ({
   plans,
@@ -13,13 +12,12 @@ const HomePage = ({
 }) => {
   return (
     <>
-      {currentUser && (
-        <Navbar
-          openForm={openForm}
-          callBackToFilterPlans={callBackToFilterPlans}
-          query={query}
-        />
-      )}
+      <Navbar
+        openForm={openForm}
+        callBackToFilterPlans={callBackToFilterPlans}
+        query={query}
+      />
+
       <div className="homepage">
         <PlansList plans={plans} deletePlan={deletePlan} />
       </div>
