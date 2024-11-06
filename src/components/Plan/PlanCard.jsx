@@ -62,6 +62,7 @@ const PlanCard = ({ plan, callBackToDeletePlan, callBackToEditPlan }) => {
         >
           <IconEdit className="delete" stroke={1} />
         </ActionIcon>
+        
         {isFormOpen && (
           <div className="form-overlay" onClick={closeForm}>
             <div className="form-box" onClick={(e) => e.stopPropagation()}>

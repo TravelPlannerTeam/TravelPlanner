@@ -34,7 +34,7 @@ export default function Updateactivity({
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-          <h2>Update accommodation</h2>
+          <h2>🤸‍♀️ Update activity</h2>
           <Button
             onClick={callBackToCloseForm}
             variant="subtle"
@@ -47,7 +47,7 @@ export default function Updateactivity({
         </div>
         <div className="inputs">
           <label>
-            Name
+            Title
             <input
               type="text"
               value={name}
@@ -58,7 +58,7 @@ export default function Updateactivity({
           </label>
 
           <label>
-            Type
+            Details
             <input
               type="text"
               value={type}
@@ -98,8 +98,9 @@ export default function Updateactivity({
           color="yellow"
           size="lg"
           radius="md"
+          fullWidth
         >
-          update Activity
+          Save changes
         </Button>
       </form>
     </>
