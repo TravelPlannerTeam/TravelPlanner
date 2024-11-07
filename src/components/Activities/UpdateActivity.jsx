@@ -5,6 +5,7 @@ export default function Updateactivity({
   callBackToCloseForm,
   callBackToUpdate,
   activity,
+  plan,
 }) {
   const [name, setName] = useState(activity.name);
   const [type, setType] = useState(activity.type);
@@ -75,7 +76,7 @@ export default function Updateactivity({
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
                 required
-                min={today}
+                min={plan.startDate}
               />
             </label>
 
@@ -86,7 +87,8 @@ export default function Updateactivity({
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
                 required
-                min={start || today} // Ensures end date is after start date
+                min={start || plan.startDate} // Ensures end date is after start date
+                max={plan.endDate}
               />
             </label>
           </div>

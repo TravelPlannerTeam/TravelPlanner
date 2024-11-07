@@ -1,16 +1,16 @@
 import { Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
-import "./accommodation-list.css"
+import "./accommodation-list.css";
 
 export default function CreateAccommodation({
   callBackToCloseForm,
   callBackToAddAccommodation,
+  plan,
 }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ export default function CreateAccommodation({
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
                 required
-                min={today}
+                min={plan.startDate}
               />
             </label>
 
@@ -95,21 +95,22 @@ export default function CreateAccommodation({
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 required
-                min={checkIn || today} // Ensures end date is after start date
+                min={checkIn || plan.startDate} // Ensures end date is after start date
+                max={plan.endDate} // cant have an accommodation after the trip is over, can you?
               />
             </label>
           </div>
           <Button
-          type="submit"
-          variant="filled"
-          color="yellow"
-          size="lg"
-          radius="md"
-          fullWidth
-        >
-          Add accommodation
-        </Button>
-          </div>
+            type="submit"
+            variant="filled"
+            color="yellow"
+            size="lg"
+            radius="md"
+            fullWidth
+          >
+            Add accommodation
+          </Button>
+        </div>
       </form>
     </>
   );
