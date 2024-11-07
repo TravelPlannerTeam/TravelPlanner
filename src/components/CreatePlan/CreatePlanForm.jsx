@@ -1,10 +1,8 @@
-import { Button } from "@mantine/core";
-import { CloseButton } from '@mantine/core';
-import { useState } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { Button, CloseButton } from "@mantine/core";
 
 import "./create-plan-form.css";
-
 import { UNSPLASH_API_URL } from "../../assets/API_URL";
 import { UNSPLASH_API_TOKEN } from "../../assets/API_URL";
 
@@ -14,6 +12,24 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
   const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [titlePlaceholder, setTitlePlaceholder] = useState("");
+  const [descriptionPlaceholder, setDescriptionPlaceholder] = useState("");
+
+  // Array of placeholder pairs
+  const placeholderPairs = [
+    { title: "New Year's Eve Celebration", description: "Ringing in the New Year with style and friends in a memorable destination!" },
+    { title: "Cozy Christmas with the fam", description: "Enjoying the holiday season with my loved ones in a warm, festive location." },
+    { title: "Winter escape in the south", description: "Taking a break from the cold with a relaxing trip to a sunny destination." },
+    { title: "Summer holidays at the beach", description: "Soaking up the sun, sand, and sea on a perfect summer getaway." },
+    { title: "Friends roadtrip through the country", description: "Gathering my friends for an unforgettable road trip adventure." },
+  ];
+
+   // Set a random placeholder pair when the component mounts
+   useEffect(() => {
+    const randomPair = placeholderPairs[Math.floor(Math.random() * placeholderPairs.length)];
+    setTitlePlaceholder(randomPair.title);
+    setDescriptionPlaceholder(randomPair.description);
+  }, []);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -83,7 +99,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
             TITLE
             <input
               type="text"
-              placeholder="New Year's Eve Celebration"
+              placeholder={titlePlaceholder}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -95,7 +111,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
             DESCRIPTION
             <textarea
               className="textarea"
-              placeholder="Seeing my Bachelor's friends to celebrate the new year."
+              placeholder={descriptionPlaceholder}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required

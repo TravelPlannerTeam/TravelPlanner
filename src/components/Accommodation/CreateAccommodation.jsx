@@ -1,5 +1,5 @@
 import { Button, CloseButton } from "@mantine/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./accommodation-list.css";
 
 export default function CreateAccommodation({
@@ -11,6 +11,24 @@ export default function CreateAccommodation({
   const [type, setType] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+
+  // Array of placeholder options
+  const placeholderOptions = [
+    "Backpacker Hostel",
+    "At Luis' apartment",
+    "Bob's couch",
+    "Four Seasons Hotel",
+    "Urban Villas B&B",
+    "SunnySide Airbnb",
+    "Awesome Camping Side",
+  ];
+
+  useEffect(() => {
+    const randomPlaceholder =
+      placeholderOptions[Math.floor(Math.random() * placeholderOptions.length)];
+    setPlaceholder(randomPlaceholder);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +66,7 @@ export default function CreateAccommodation({
             Name
             <input
               type="text"
-              placeholder="Four Seasons"
+              placeholder={placeholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
