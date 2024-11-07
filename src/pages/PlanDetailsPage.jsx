@@ -27,9 +27,9 @@ export default function PlanDetailsPage({ plans }) {
   const openPackingForm = () => setIsAddPackingItemOpen(true);
   const closePackingForm = () => setIsAddPackingItemOpen(false);
 
-  const [accomodationList, setAccomodationList] = useState([]);
-  const [activitiesList, setActivitiesList] = useState([]);
-  const [packingList, setPackingList] = useState([]);
+  const [accomodationList, setAccomodationList] = useState(null);
+  const [activitiesList, setActivitiesList] = useState(null);
+  const [packingList, setPackingList] = useState(null);
   let plan = "";
 
   let imgToDisplay;
@@ -41,10 +41,14 @@ export default function PlanDetailsPage({ plans }) {
   });
   useEffect(() => {
     //this imporves code preformance
-
-    getAccommodation();
-    getActivities();
-    getPackingList();
+    const fetchData = async () => {
+      await Promise.all([
+        getAccommodation(),
+        getActivities(),
+        getPackingList(),
+      ]).catch((e) => console.log("Error in promise getting all details", e));
+    };
+    fetchData();
   }, []);
 
   const getAccommodation = () => {
