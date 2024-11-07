@@ -41,4 +41,77 @@
 }
 
 
+@media (max-width: 466px) {
+  .lists {
+    flex-direction: column;
+  }
+  .box {
+    width: 100%;
+  }
+  .plan-details-page {
+    margin: 1em 2em;
+  }
 
+  .back-button {
+    margin: 1em 2em;
+  }
+
+  .box h4 {
+    flex-grow: 1;
+    font-weight: 700;
+    font-size: 1.2em
+  }
+  .list-top {
+    padding: 1em 1em;
+  }
+  
+}
+
+@media (min-width: 466px) and (max-width: 889px) {
+  .lists {
+    flex-direction: column;
+  }
+  .box {
+    width: 100%;
+  }
+  .plan-details-page {
+    margin: 1em 2em;
+  }
+
+  .back-button {
+    margin: 1em 2em;
+  }
+
+  .box h4 {
+    flex-grow: 1;
+    font-weight: 700;
+    font-size: 1.2em
+  }
+  .list-top {
+    padding: 1em 1em;
+  }
+  
+}
+
+@media (min-width: 890px) and (max-width: 1249px) {
+  .plan-details-page {
+    margin: 1em 2em;
+  }
+
+  .back-button {
+    margin: 1em 2em;
+  }
+
+  .box h4 {
+    flex-grow: 1;
+    font-weight: 700;
+    font-size: 1.2em
+  }
+  .box {
+    width: 32%;
+  }
+
+  .list-top {
+    padding: 1em 1em;
+  }
+}
