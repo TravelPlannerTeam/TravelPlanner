@@ -215,14 +215,8 @@ export default function PlanDetailsPage({ plans }) {
         className="Header"
         style={{
           backgroundImage: `url(${imgToDisplay})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "25vh",
-          position: "relative",
-          marginBottom: "2em",
         }}
       >
-        <Weather className="weather" city={plan.destination} />
         <Button
           className="back-button"
           variant="white"
@@ -236,6 +230,7 @@ export default function PlanDetailsPage({ plans }) {
         >
           Back to all trips
         </Button>
+        <Weather className="weather" city={plan.destination} />
       </div>
 
       <div className="plan-details-page">

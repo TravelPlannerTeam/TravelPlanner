@@ -57,6 +57,17 @@
   border-radius: 1em;
 }
 
+.Header {
+  background: url(${imgToDisplay});
+  background-size: cover;
+  background-position: center;
+  height: 25vh;
+  position: relative;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
 
 @media (max-width: 466px) {
   .lists {
