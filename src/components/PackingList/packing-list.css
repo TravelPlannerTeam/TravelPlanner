@@ -1,15 +1,26 @@
 .packing-list-item {
-    width: 100%;
-    margin-left: 2em;
+  width: 100%;
+  margin-left: 2em;
 }
 
 .packing-list-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Pushes delete icon to the right */
+    justify-content: space-between; /* Push delete icon to the far right */
     width: 100%;
+  }
+
+.packing-transparent-action-icon {
+  cursor: pointer;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
-.transparent-action-icon {
-    cursor: pointer;
+.packing-transparent-action-icon:hover {
+  background-color: lightgrey !important;
+}
+
+.packing-transparent-action-icon .delete {
+  color: var(--dark-text-color);
+  background-color: transparent !important;
 }

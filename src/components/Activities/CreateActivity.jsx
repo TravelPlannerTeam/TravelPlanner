@@ -1,5 +1,5 @@
 import { Button, CloseButton } from "@mantine/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CreateActivity({
   callBackToCloseForm,
@@ -10,6 +10,23 @@ export default function CreateActivity({
   const [type, setType] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+
+  // Array of placeholder options
+  const placeholderOptions = [
+    "Go hiking on a mountain",
+    "Go fishing at a lake",
+    "Go surfing with friends",
+    "Visit a museum",
+    "Dinner at a fancy restaurant",
+  ];
+
+  // Set a random placeholder whenever the component mounts
+  useEffect(() => {
+    const randomPlaceholder =
+      placeholderOptions[Math.floor(Math.random() * placeholderOptions.length)];
+    setPlaceholder(randomPlaceholder);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +64,7 @@ export default function CreateActivity({
             Title
             <input
               type="text"
-              placeholder="Hiking trip, concert, dinner ..."
+              placeholder={placeholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -59,7 +76,7 @@ export default function CreateActivity({
             Details
             <input
               type="text"
-              placeholder="Meeting friends to ..."
+              placeholder="Some more details..."
               value={type}
               onChange={(e) => setType(e.target.value)}
               required

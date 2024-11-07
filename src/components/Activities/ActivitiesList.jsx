@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Card, Text, Group, ActionIcon, Loader } from "@mantine/core";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
-import { useState } from "react";
-import Updateactivity from "./UpdateActivity";
 
+import Updateactivity from "./UpdateActivity";
 import "./activities.css";
 
 export default function ActivitiesList({

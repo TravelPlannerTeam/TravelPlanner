@@ -1,11 +1,28 @@
-import { Box, Button, CloseButton } from "@mantine/core";
-import { useState } from "react";
+import { Button, CloseButton } from "@mantine/core";
+import { useState, useEffect } from "react";
 
 export default function CreatePackingItem({
   callBackToCloseForm,
   callBackToAddToPackingItem,
 }) {
   const [name, setName] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+
+  // Array of placeholder options
+  const placeholderOptions = [
+    "Hiking shoes",
+    "Sunscreen",
+    "Water bottle",
+    "Backpack",
+    "Snacks for the trail",
+  ];
+  // Set a random placeholder whenever the component mounts
+  useEffect(() => {
+    const randomPlaceholder =
+      placeholderOptions[Math.floor(Math.random() * placeholderOptions.length)];
+    setPlaceholder(randomPlaceholder);
+  }, []);
+
   // const [type, setType] = useState("");
   const today = new Date().toISOString().split("T")[0];
 
@@ -42,7 +59,7 @@ export default function CreatePackingItem({
             Name
             <input
               type="text"
-              placeholder="Hiking shoes"
+              placeholder={placeholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
