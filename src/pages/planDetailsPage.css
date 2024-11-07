@@ -1,10 +1,6 @@
 .plan-details-page {
-  margin: 2em;
+  margin: 2em 4em;
   align-items: center;
-}
-
-.details {
-  margin: 2em;
 }
 
 .plan-details-page h1 {
@@ -13,14 +9,11 @@
 
 .lists {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
-.detailsList {
-  margin: 0 1em;
-}
 .back-button {
-  margin: 2em;
+  margin: 2em 4em;
 }
 
 .box {
@@ -37,7 +30,7 @@
 }
 
 .list-top {
-  margin: 1em;
+  margin: 1em 0em;
   width: 100%;
   padding: 1em 2em;
   display: flex;
@@ -46,3 +39,6 @@
   background-color: white;
   border-radius: 1em;
 }
+
+
+
