@@ -1,17 +1,24 @@
-import { Card, Text, Button, Group, List, ActionIcon } from "@mantine/core";
+import {
+  Card,
+  Text,
+  Button,
+  Group,
+  List,
+  ActionIcon,
+  Loader,
+} from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
 import "./packing-list.css";
 
 const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
-  if (packingList === null) return <h3>Loading...</h3>;
-
+  console.log(packingList);
   return (
     <List>
       {packingList.map((item) => {
         return (
-          <div>
-            <List.Item key={item.id} className="packing-list-item">
+          <div key={item.id}>
+            <List.Item className="packing-list-item">
               <Group
                 justify="flex-start"
                 mt="md"

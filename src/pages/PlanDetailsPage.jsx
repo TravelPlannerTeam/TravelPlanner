@@ -43,14 +43,10 @@ export default function PlanDetailsPage({ plans }) {
   });
   useEffect(() => {
     //this imporves code preformance
-    const fetchData = async () => {
-      await Promise.all([
-        getAccommodation(),
-        getActivities(),
-        getPackingList(),
-      ]);
-      fetchData();
-    };
+
+    getAccommodation();
+    getActivities();
+    getPackingList();
   }, []);
 
   const getAccommodation = () => {
@@ -272,6 +268,7 @@ export default function PlanDetailsPage({ plans }) {
                 </div>
               </div>
             )}
+
             <PackingList
               packingList={packingList}
               callBackToDelete={deletePackingItem}
