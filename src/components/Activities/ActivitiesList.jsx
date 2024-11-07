@@ -9,6 +9,7 @@ export default function ActivitiesList({
   activitiesList,
   callBackToDelete,
   callBackToUpdate,
+  plan,
 }) {
   const [editingId, setEditingId] = useState(null); // saving id of the item being updated
 
@@ -72,6 +73,7 @@ export default function ActivitiesList({
                     callBackToCloseForm={closeUpdateForm}
                     activity={activity}
                     callBackToUpdate={callBackToUpdate}
+                    plan={plan}
                   />
                 </div>
               </div>

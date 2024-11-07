@@ -1,11 +1,12 @@
 import { Button, CloseButton } from "@mantine/core";
 import { useState } from "react";
-import "./accommodation-list.css"
+import "./accommodation-list.css";
 
 export default function UpdateAccommodation({
   callBackToCloseForm,
   callBackToUpdate,
   accommodation,
+  plan,
 }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
@@ -58,7 +59,7 @@ export default function UpdateAccommodation({
           </label>
 
           <label className="dropdown">
-          Select a housing type
+            Select a housing type
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
@@ -82,7 +83,7 @@ export default function UpdateAccommodation({
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
                 required
-                min={today}
+                min={plan.startDate}
               />
             </label>
 
@@ -93,20 +94,21 @@ export default function UpdateAccommodation({
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 required
-                min={checkIn || today} // Ensures end date is after start date
+                min={checkIn || plan.startDate} // Ensures end date is after start date
+                max={plan.endDate}
               />
             </label>
           </div>
           <Button
-          type="submit"
-          variant="filled"
-          color="yellow"
-          size="lg"
-          radius="md"
-          fullWidth
-        >
-          Save changes
-        </Button>
+            type="submit"
+            variant="filled"
+            color="yellow"
+            size="lg"
+            radius="md"
+            fullWidth
+          >
+            Save changes
+          </Button>
         </div>
       </form>
     </>

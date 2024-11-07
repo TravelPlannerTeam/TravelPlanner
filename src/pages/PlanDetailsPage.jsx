@@ -311,6 +311,7 @@ export default function PlanDetailsPage({ plans }) {
               callBackToDelete={deleteAccomodation}
               accomodationList={accomodationList}
               callBackToUpdate={updateAccommodation}
+              plan={plan}
             />
           </section>
 
@@ -346,6 +347,7 @@ export default function PlanDetailsPage({ plans }) {
               callBackToDelete={deleteActivity}
               activitiesList={activitiesList}
               callBackToUpdate={updateActivity}
+              plan={plan}
             />
           </section>
         </div>

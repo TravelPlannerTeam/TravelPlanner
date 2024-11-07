@@ -9,6 +9,7 @@ export default function AccommodationList({
   accomodationList,
   callBackToDelete,
   callBackToUpdate,
+  plan,
 }) {
   const [editingId, setEditingId] = useState(null); // saving id of the item being updated
 
@@ -74,6 +75,7 @@ export default function AccommodationList({
                     callBackToCloseForm={closeUpdateForm}
                     accommodation={accommodation}
                     callBackToUpdate={callBackToUpdate}
+                    plan={plan}
                   />
                 </div>
               </div>
