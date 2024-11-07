@@ -5,7 +5,7 @@ import {
   IconBrandReact,
   IconManFilled,
 } from "@tabler/icons-react";
-import "./footer.css";
+import "./Footer.css";
 import logo from "../../assets/logo.png"
 
 const links = [
