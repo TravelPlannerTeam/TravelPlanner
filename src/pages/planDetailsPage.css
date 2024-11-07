@@ -29,6 +29,10 @@
   margin: 2em 4em;
 }
 
+.back-button:hover {
+  background-color: lightgrey !important;
+}
+
 .box {
   width: 30%;
   height: fit-content;

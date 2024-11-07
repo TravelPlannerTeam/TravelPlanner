@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Badge } from "@mantine/core";
+import { IconArrowLeft } from '@tabler/icons-react';
 
 import { API_URL } from "../assets/API_URL";
 import AccommodationList from "../components/Accommodation/AccommodationList";
@@ -228,6 +229,7 @@ export default function PlanDetailsPage({ plans }) {
           color="black"
           size="md"
           radius="md"
+          leftSection={<IconArrowLeft size={14} />}
           onClick={() => {
             navigate("/");
           }}
