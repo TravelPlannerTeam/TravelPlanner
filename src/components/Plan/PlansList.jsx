@@ -1,4 +1,4 @@
-import { Loader } from "@mantine/core";
+import { Loader, Button } from "@mantine/core";
 import PlanCard from "./PlanCard";
 import "./planslist.css";
 
@@ -6,12 +6,18 @@ const PlansList = ({ plans, deletePlan, callBackToEditPlan, openForm }) => {
   if (!plans) return <Loader color="yellow" size="xl" type="dots" />;
   if (plans.length === 0)
     return (
-      <h3 className="noPlans">
-        No Plans yet,Would you Like to{" "}
-        <button ml="sm" color="green" onClick={openForm}>
-          Create One?
-        </button>
-      </h3>
+      <div className="create-plan">
+        <h2 className="noPlans">No travel plans here... Time to change that! ✨ </h2>
+        <Button
+          onClick={openForm}
+          variant="filled"
+          color="yellow"
+          size="lg"
+          radius="md"
+        >
+          Create travel plan
+        </Button>
+      </div>
     );
   return (
     <div className="plans-list">
