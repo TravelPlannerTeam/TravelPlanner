@@ -1,15 +1,8 @@
 import React from "react";
 import { useState, useEffect, useMemo } from "react";
-import { AuthProvider } from "./contexts/AuthContext";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { API_URL as API } from "./assets/API_URL"; //importing API base url from js file in assets
 import { useAuth } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
@@ -49,9 +42,12 @@ function App() {
           }))
           .filter((plan) => plan.userId === currentUser?.uid); // Filter by current user's uid
 
-        const newarr = array.toReversed();
+        array.sort((a, b) => {
+          return Date.parse(a.startDate) - Date.parse(b.startDate); // sort by date
+        });
+
         // save list in state
-        setPlans(newarr);
+        setPlans(array);
       })
       .catch((e) => console.log("Error getting plans from Firebase", e));
   };

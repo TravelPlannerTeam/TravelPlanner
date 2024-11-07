@@ -63,10 +63,12 @@ export default function PlanDetailsPage({ plans }) {
             id,
             ...response.data[id],
           }));
-          const newarr = array.toReversed();
+          array.sort((a, b) => {
+            return Date.parse(a.checkIn) - Date.parse(b.checkIn); // sort by date
+          });
           //save list in state
 
-          setAccomodationList(newarr);
+          setAccomodationList(array);
         } else {
           setAccomodationList([]);
         }
@@ -117,10 +119,11 @@ export default function PlanDetailsPage({ plans }) {
             id,
             ...response.data[id],
           }));
-          const newarr = array.toReversed();
-          //save list in state
+          array.sort((a, b) => {
+            return Date.parse(a.start) - Date.parse(b.start); // sort by date
+          }); //save list in state
 
-          setActivitiesList(newarr);
+          setActivitiesList(array);
         } else {
           setActivitiesList([]);
         }
