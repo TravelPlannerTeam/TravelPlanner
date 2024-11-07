@@ -4,12 +4,12 @@ import { useState } from "react";
 export default function CreateActivity({
   callBackToCloseForm,
   callBackToAddActivity,
+  plan,
 }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,7 +75,7 @@ export default function CreateActivity({
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
                 required
-                min={today}
+                min={plan.startDate}
               />
             </label>
 
@@ -86,7 +86,8 @@ export default function CreateActivity({
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
                 required
-                min={start || today} // Ensures end date is after start date
+                min={start || plan.startDate} // Ensures end date is after start date
+                max={plan.endDate} // cant have an activity after the trip is over, can you?
               />
             </label>
           </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Badge } from "@mantine/core";
 
 import { API_URL } from "../assets/API_URL";
@@ -236,13 +236,13 @@ export default function PlanDetailsPage({ plans }) {
       <div className="plan-details-page">
         <div className="details">
           <div className="details-title">
-          <h1> {plan.title}</h1>
-          <Badge size="sm" variant="light" color="yellow">
-            {plan.destination}
-          </Badge>
+            <h1> {plan.title}</h1>
+            <Badge size="sm" variant="light" color="yellow">
+              {plan.destination}
+            </Badge>
           </div>
           <p>
-          {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
+            {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
           </p>
         </div>
 
@@ -301,7 +301,7 @@ export default function PlanDetailsPage({ plans }) {
                   <CreateAccommodation
                     callBackToCloseForm={closeAccommodationForm}
                     callBackToAddAccommodation={addAccommodation}
-                    planId={id}
+                    plan={plan}
                   />
                 </div>
               </div>
@@ -336,6 +336,7 @@ export default function PlanDetailsPage({ plans }) {
                   <CreateActivity
                     callBackToCloseForm={closeActivitesForm}
                     callBackToAddActivity={addActivity}
+                    plan={plan}
                   />
                 </div>
               </div>
