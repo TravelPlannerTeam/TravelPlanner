@@ -1,8 +1,13 @@
 .footer {
+  margin: 1em 2em; 
   position: relative;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid rgb(198, 188, 188);
+  bottom: 0em;
+  border-top: 0.1em solid grey;
+  box-sizing: border-box;
+  }
+
+  .footer-title {
+    display: none
   }
   
   .inner {
@@ -10,6 +15,31 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--mantine-spacing-md) var(--mantine-spacing-md);
+  }
+
+
+  @media (max-width: 767px) {
+    .footer {
+      margin: 1em 0.5em; 
+    }
+      .inner {
+      flex-direction: column; 
+
+    }
+    .footer-icons {
+      margin: 2em 0em 1em;
+    }
+
+    .travelplanner-footer {
+      display: flex; 
+      align-items: center;
+    }
+
+    .footer-title {
+      display: block;
+      padding: 1em 0.1em;
+      font-weight: 700;
+    }
 
   }
   

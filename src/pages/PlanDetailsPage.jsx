@@ -1,16 +1,18 @@
-import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import {useNavigate, useParams } from "react-router-dom";
+import { Button, Badge } from "@mantine/core";
+
+import { API_URL } from "../assets/API_URL";
 import AccommodationList from "../components/Accommodation/AccommodationList";
 import ActivitiesList from "../components/Activities/ActivitiesList";
 import PackingList from "../components/PackingList/PackingList";
 import CreateActivity from "../components/Activities/CreateActivity";
 import CreatePackingItem from "../components/PackingList/CreatePackingItem";
 import CreateAccommodation from "../components/Accommodation/CreateAccommodation";
-import "./planDetailsPage.css";
-import { Button } from "@mantine/core";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { API_URL } from "../assets/API_URL";
 import Weather from "../components/Weather";
+import "./planDetailsPage.css";
+
 export default function PlanDetailsPage({ plans }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -195,6 +197,14 @@ export default function PlanDetailsPage({ plans }) {
       .catch((e) => console.log("Couldnt Delete packing item", e));
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
   return (
     <>
       <div
@@ -225,9 +235,14 @@ export default function PlanDetailsPage({ plans }) {
 
       <div className="plan-details-page">
         <div className="details">
+          <div className="details-title">
           <h1> {plan.title}</h1>
+          <Badge size="sm" variant="light" color="yellow">
+            {plan.destination}
+          </Badge>
+          </div>
           <p>
-            Start Date: ({plan.startDate}) - End Date: ({plan.endDate})
+          {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
           </p>
         </div>
 

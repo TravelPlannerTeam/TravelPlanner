@@ -1,22 +1,17 @@
-import { Anchor, Group, ActionIcon, rem } from "@mantine/core";
+import { Anchor, Group, ActionIcon, rem, Image } from "@mantine/core";
 import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
   IconBrandGithub,
   IconBrandMantine,
   IconBrandReact,
   IconManFilled,
-  IconMoodNerd,
-  IconBrandSuperhuman,
-  IconMan,
 } from "@tabler/icons-react";
-import "./Footer.css";
+import "./footer.css";
+import logo from "../../assets/logo.png"
 
 const links = [
   {
     link: "https://github.com/TravelPlannerTeam/TravelPlanner",
-    label: "Visit us on github",
+    label: " Visit us on Github",
   },
   { link: "https://github.com/nathidaum", label: "Nathi Daum" },
   { link: "https://github.com/MoazMubaydin", label: "Moaz Mubaydin" },
@@ -29,7 +24,8 @@ export default function Footer() {
       href={link.link}
       lh={1}
       onClick={(event) => event.preventDefault()}
-      size="sm"
+      size="xs"
+      fw={600}
     >
       {link.label}
     </Anchor>
@@ -38,37 +34,89 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="inner">
+
+        <Group className="travelplanner-footer">
+        <Image
+          h={30}
+          w="auto"
+          fit="contain"
+          src={logo}
+        />
+        <h4 className="footer-title">TravelPlanner</h4>
+        </Group>
+
         <Group>{items}</Group>
 
-        <Group gap="xs" justify="flex-end" wrap="nowrap">
-          <ActionIcon size="lg" variant="default" radius="xl">
+        <Group
+          className="footer-icons"
+          gap="xs"
+          justify="flex-end"
+          wrap="nowrap"
+        >
+          <ActionIcon
+            variant="light"
+            color="yellow"
+            radius="xl"
+            aria-label="React"
+          >
             <a href="https://react.dev/">
               <IconBrandReact
-                style={{ width: rem(18), height: rem(18) }}
+                style={{
+                  width: rem(18),
+                  height: rem(18),
+                  color: "var(--primary-color)",
+                }}
                 stroke={1.5}
               />
             </a>
           </ActionIcon>
-          <ActionIcon size="lg" variant="default" radius="xl">
+          <ActionIcon
+            variant="light"
+            color="yellow"
+            radius="xl"
+            aria-label="Teacher Assistant"
+          >
             <a href="https://github.com/luisjunco">
               <IconManFilled
-                style={{ width: rem(18), height: rem(18) }}
+                style={{
+                  width: rem(18),
+                  height: rem(18),
+                  color: "var(--primary-color)",
+                }}
                 stroke={1.5}
               />
             </a>
           </ActionIcon>
-          <ActionIcon size="lg" variant="default" radius="xl">
+          <ActionIcon
+            variant="light"
+            color="yellow"
+            radius="xl"
+            aria-label="Mantine"
+          >
             <a href="https://mantine.dev/">
               <IconBrandMantine
-                style={{ width: rem(18), height: rem(18) }}
+                style={{
+                  width: rem(18),
+                  height: rem(18),
+                  color: "var(--primary-color)",
+                }}
                 stroke={1.5}
               />
             </a>
           </ActionIcon>
-          <ActionIcon size="lg" variant="default" radius="xl">
+          <ActionIcon
+            variant="light"
+            color="yellow"
+            radius="xl"
+            aria-label="GitHub"
+          >
             <a href="https://github.com/TravelPlannerTeam/TravelPlanner">
               <IconBrandGithub
-                style={{ width: rem(18), height: rem(18) }}
+                style={{
+                  width: rem(18),
+                  height: rem(18),
+                  color: "var(--primary-color)",
+                }}
                 stroke={1.5}
               />{" "}
             </a>
