@@ -1,4 +1,4 @@
-import { Card, Text, Group, ActionIcon } from "@mantine/core";
+import { Card, Text, Group, ActionIcon, Loader } from "@mantine/core";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import Updateactivity from "./UpdateActivity";
@@ -22,10 +22,10 @@ export default function ActivitiesList({
     return `${day} ${month}`;
   };
 
-  if (activitiesList === null) return <h3>Loading...</h3>;
+  if (!activitiesList) return <Loader color="yellow" size="xl" type="dots" />;
 
   return (
-    <div className="detailsList" style={{ width: '100%' }}>
+    <div className="detailsList" style={{ width: "100%" }}>
       {activitiesList.map((activity) => {
         return (
           <Card
@@ -42,7 +42,6 @@ export default function ActivitiesList({
             <Text size="sm">{activity.type}</Text>
 
             <Group justify="space-between" mt="md" mb="xs">
-
               <Text size="sm" mt="s" color="grey">
                 {formatDate(activity.start)} until {formatDate(activity.end)}
               </Text>

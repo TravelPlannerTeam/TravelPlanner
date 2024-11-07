@@ -12,7 +12,7 @@ import { IconTrash } from "@tabler/icons-react";
 import "./packing-list.css";
 
 const PackingList = ({ packingList, callBackToDelete, callBackToUpdate }) => {
-  console.log(packingList);
+  if (!packingList) return <Loader color="yellow" size="xl" type="dots" />;
   return (
     <List>
       {packingList.map((item) => {

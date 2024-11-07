@@ -1,4 +1,4 @@
-import { Card, Text, Badge, Group, ActionIcon } from "@mantine/core";
+import { Card, Text, Badge, Group, ActionIcon, Loader } from "@mantine/core";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 import UpdateAccommodation from "./UpdateAccommodation";
 import { useState } from "react";
@@ -22,10 +22,10 @@ export default function AccommodationList({
     return `${day} ${month}`;
   };
 
-  if (accomodationList === null) return <h3>Loading...</h3>;
+  if (!accomodationList) return <Loader color="yellow" size="xl" type="dots" />;
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: "100%" }}>
       {accomodationList.map((accommodation) => {
         return (
           <Card
