@@ -80,3 +80,5 @@ Try our [Travel Planner Demo on netlify](https://yourtravelplanner.netlify.app/)
 ### Plan Details Page
 
 ![Plan Details Page Screenshot](./src/assets/Demo/PlanDetails.png)
+
+Try our [Travel Planner Demo on netlify](https://yourtravelplanner.netlify.app/)
