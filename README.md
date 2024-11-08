@@ -68,3 +68,15 @@ npm run dev
 ## Demo
 
 Try our [Travel Planner Demo on netlify](https://yourtravelplanner.netlify.app/)
+
+### Login Page
+
+![Login Page Screenshot](./src/assets/Demo/Login.png)
+
+### Home Page
+
+![Home Page Screenshot](./src/assets/Demo/HomePage.png)
+
+### Plan Details Page
+
+![Plan Details Page Screenshot](./src/assets/Demo/PlanDetails.png)
