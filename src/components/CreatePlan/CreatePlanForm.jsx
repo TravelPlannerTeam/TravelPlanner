@@ -83,7 +83,7 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
     <>
       <form onSubmit={handleSubmit} className="form">
         <div className="top">
-        <h2>Create a new travel plan</h2>
+        <h2>Create a new plan</h2>
         <CloseButton
           className="close"
           onClick={callBackToCloseForm}
