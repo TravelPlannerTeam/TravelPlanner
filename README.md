@@ -14,6 +14,14 @@ This is a React-based travel planner web application with Firebase integration, 
 
 This application offers a centralized, user-friendly interface to streamline travel organization and ensure nothing is forgotten during your trips.
 
+## Technologies Used
+
+- [**React+Vite**](https://vite.dev/guide/) for building the user interface.
+- [**Firebase**](https://firebase.google.com/) for authentication, database, and storage.
+- [**Mantine**](https://mantine.dev/) for UI components.
+- [**Unsplash API**](https://unsplash.com/developers) for fetching location images.
+- [**Weather API**](https://www.weatherapi.com/) for weather forecasts.
+
 ## Installation Instructions
 
 To set up and run the Travel Planner application locally, follow these steps:
