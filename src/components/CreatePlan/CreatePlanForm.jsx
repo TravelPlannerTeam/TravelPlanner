@@ -166,7 +166,6 @@ const CreatePlanForm = ({ callBacktoCreatePlan, callBackToCloseForm }) => {
         >
           Create new plan
         </Button>
-        ;
       </form>
     </>
   );
