@@ -26,24 +26,30 @@ Clone this repository to your local machine using:
 git clone https://github.com/TravelPlannerTeam/TravelPlanner.git
 
 cd TravelPlanner
+```
+
 ### 2. Install Dependencies
+
+```bash
 npm install
 npm install @mantine/core @mantine/hooks
+```
 
 ### 3.Configure Environment Variables
 
-**Firebase Database URL**
+```bash
+# Firebase Database URL
 VITE_API_URL=(Your Firebase Database URL)
 
-**Unsplash API for location images**
+# Unsplash API for location images
 VITE_UNSPLASH_API_URL=https://api.unsplash.com/search/photos
 VITE_UNSPLASH_API_TOKEN=(Your Unsplash API Token)
 
-**Weather API for trip weather details**
+# Weather API for trip weather details
 VITE_WEATHER_API_URL=https://api.weatherapi.com/v1/forecast.json
 VITE_WEATHER_API_TOKEN=(Your Weather API Token)
 
-**Firebase Configuration**
+# Firebase Configuration
 VITE_FIREBASE_API_KEY=(Your Firebase API Key)
 VITE_FIREBASE_AUTH_DOMAIN=(Your Firebase Auth Domain)
 VITE_FIREBASE_DATABASE_URL=(Your Firebase Database URL)
@@ -51,10 +57,10 @@ VITE_FIREBASE_PROJECT_ID=(Your Firebase Project ID)
 VITE_FIREBASE_STORAGE_BUCKET=(Your Firebase Storage Bucket)
 VITE_FIREBASE_MESSAGING_SENDER_ID=(Your Firebase Messaging Sender ID)
 VITE_FIREBASE_APP_ID=(Your Firebase App ID)
+```
 
-### 4. Now to run the application locally use:
+### 4. Start The Application locally
+
+```bash
 npm run dev
-
-# Demo
-Check our [Travel Planner Demo](https://yourtravelplanner.netlify.app/)
 ```
