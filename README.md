@@ -64,3 +64,7 @@ VITE_FIREBASE_APP_ID=(Your Firebase App ID)
 ```bash
 npm run dev
 ```
+
+## Demo
+
+Try our [Travel Planner Demo on netlify](https://yourtravelplanner.netlify.app/)
