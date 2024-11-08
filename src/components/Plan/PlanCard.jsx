@@ -25,6 +25,16 @@ const PlanCard = ({ plan, callBackToDeletePlan, callBackToEditPlan }) => {
     return `${day} ${month}`;
   };
 
+  const calculateDaysLeft = (startDate) => {
+    const today = new Date();
+    const start = new Date(startDate);
+    const timeDifference = start - today;
+
+    // Convert time difference from milliseconds to days
+    const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysLeft > 0 ? daysLeft : 0; // Ensure no negative days
+  };
+
   return (
     <Card withBorder radius="lg" p="md" className="card">
       <Card.Section>
@@ -40,12 +50,26 @@ const PlanCard = ({ plan, callBackToDeletePlan, callBackToEditPlan }) => {
             {plan.destination}
           </Badge>
         </Group>
+
         <Text size="sm" mt="xs">
           {plan.description}
         </Text>
-        <Text size="sm" mt="xs" color="grey">
-          {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
-        </Text>
+
+        <Group align="center" position="center" mt="md">
+          <Text size="sm" color="grey">
+            {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
+          </Text>
+
+          {calculateDaysLeft(plan.startDate) > 0 && (
+          <Badge size="sm" variant="light" color="grey">
+            {calculateDaysLeft(plan.startDate)} days left
+          </Badge>)}
+          {calculateDaysLeft(plan.startDate) <= 0 && (
+          <Badge size="sm" variant="light" color="grey">
+            Enjoy your stay!
+          </Badge>)}
+
+        </Group>
       </Card.Section>
 
       <Group mt="xs">
@@ -62,7 +86,7 @@ const PlanCard = ({ plan, callBackToDeletePlan, callBackToEditPlan }) => {
         >
           <IconEdit className="delete" stroke={1} />
         </ActionIcon>
-        
+
         {isFormOpen && (
           <div className="form-overlay" onClick={closeForm}>
             <div className="form-box" onClick={(e) => e.stopPropagation()}>
