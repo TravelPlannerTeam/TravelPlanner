@@ -142,7 +142,6 @@ const EditPlanForm = ({ callBackToEditPlan, callBackToCloseForm, plan }) => {
         >
           Save
         </Button>
-        ;
       </form>
     </>
   );

@@ -9,14 +9,14 @@ export default function CreateActivity({
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [time, setTime] = useState("");
   const [placeholder, setPlaceholder] = useState("");
 
   // Array of placeholder options
   const placeholderOptions = [
     "Go hiking on a mountain",
     "Go fishing at a lake",
-    "Go surfing with friends",
+    "Go surfing with friendss",
     "Visit a museum",
     "Dinner at a fancy restaurant",
   ];
@@ -33,7 +33,7 @@ export default function CreateActivity({
 
     const newActivity = {
       start: start,
-      end: end,
+      time: time,
       name: name,
       type: type,
     };
@@ -41,7 +41,7 @@ export default function CreateActivity({
     setName("");
     setType("");
     setStart("");
-    setEnd("");
+    setTime("");
     callBackToCloseForm();
   };
 
@@ -86,7 +86,7 @@ export default function CreateActivity({
 
           <div className="dates">
             <label>
-              Start
+              Date
               <input
                 type="date"
                 value={start}
@@ -97,14 +97,12 @@ export default function CreateActivity({
             </label>
 
             <label>
-              End
+              Time
               <input
-                type="date"
-                value={end}
-                onChange={(e) => setEnd(e.target.value)}
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 required
-                min={start || plan.startDate} // Ensures end date is after start date
-                max={plan.endDate} // cant have an activity after the trip is over, can you?
               />
             </label>
           </div>

@@ -10,7 +10,7 @@ export default function Updateactivity({
   const [name, setName] = useState(activity.name);
   const [type, setType] = useState(activity.type);
   const [start, setStart] = useState(activity.start);
-  const [end, setEnd] = useState(activity.end);
+  const [time, setTime] = useState(activity.time);
   const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ export default function Updateactivity({
     const updateActivity = {
       id: activity.id,
       start: start,
-      end: end,
+      time: time,
       name: name,
       type: type,
     };
@@ -27,7 +27,7 @@ export default function Updateactivity({
     setName("");
     setType("");
     setStart("");
-    setEnd("");
+    setTime("");
     callBackToCloseForm();
   };
 
@@ -70,7 +70,7 @@ export default function Updateactivity({
 
           <div className="dates">
             <label>
-              Start Date:
+              Date
               <input
                 type="date"
                 value={start}
@@ -81,14 +81,12 @@ export default function Updateactivity({
             </label>
 
             <label>
-              End Date:
+              Time
               <input
-                type="date"
-                value={end}
-                onChange={(e) => setEnd(e.target.value)}
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 required
-                min={start || plan.startDate} // Ensures end date is after start date
-                max={plan.endDate}
               />
             </label>
           </div>

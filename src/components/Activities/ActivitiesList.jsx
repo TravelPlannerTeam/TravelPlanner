@@ -44,7 +44,7 @@ export default function ActivitiesList({
 
             <Group justify="space-between" mt="md" mb="xs">
               <Text size="sm" mt="s" color="grey">
-                {formatDate(activity.start)} until {formatDate(activity.end)}
+                ⏰ {formatDate(activity.start)} at {activity.time}
               </Text>
               <Group justify="flex-end">
                 <ActionIcon
